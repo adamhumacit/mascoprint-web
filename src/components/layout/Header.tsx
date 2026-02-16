@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useState, useEffect, useRef } from 'react'
 import { Container } from '@/components/ui/Container'
+import { trackPhoneClick, trackEmailClick } from '@/lib/analytics'
 
 const navigation = [
   { name: 'Home', href: '/' },
@@ -194,12 +195,14 @@ export function Header() {
           <div className="hidden xl:flex items-center space-x-6 text-sm">
             <a
               href="tel:+441582791190"
+              onClick={trackPhoneClick}
               className="text-gray-600 hover:text-primary-600"
             >
               +44 (0)1582 791190
             </a>
             <a
               href="mailto:office@mascoprint.co.uk"
+              onClick={trackEmailClick}
               className="text-gray-600 hover:text-primary-600"
             >
               office@mascoprint.co.uk
@@ -301,6 +304,7 @@ export function Header() {
             <div className="border-t border-gray-200 mt-4 pt-4 px-4 space-y-3">
               <a
                 href="tel:+441582791190"
+                onClick={trackPhoneClick}
                 className="flex items-center gap-3 text-gray-600 hover:text-brand-600 transition-colors"
               >
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -310,6 +314,7 @@ export function Header() {
               </a>
               <a
                 href="mailto:office@mascoprint.co.uk"
+                onClick={trackEmailClick}
                 className="flex items-center gap-3 text-gray-600 hover:text-brand-600 transition-colors"
               >
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

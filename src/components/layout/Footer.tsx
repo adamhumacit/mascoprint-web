@@ -1,5 +1,8 @@
+'use client'
+
 import Link from 'next/link'
 import { Container } from '@/components/ui/Container'
+import { trackPhoneClick, trackEmailClick, trackExternalLink } from '@/lib/analytics'
 
 export function Footer() {
   return (
@@ -20,7 +23,11 @@ export function Footer() {
             </p>
             <p className="text-sm text-gray-600">
               <strong>Phone:</strong>{' '}
-              <a href="tel:+441582791190" className="hover:text-primary-600">
+              <a
+                href="tel:+441582791190"
+                onClick={trackPhoneClick}
+                className="hover:text-primary-600"
+              >
                 +44 (0)1582 791190
               </a>
             </p>
@@ -28,6 +35,7 @@ export function Footer() {
               <strong>Email:</strong>{' '}
               <a
                 href="mailto:office@mascoprint.co.uk"
+                onClick={trackEmailClick}
                 className="hover:text-primary-600"
               >
                 office@mascoprint.co.uk
@@ -62,26 +70,15 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Partners & Social */}
+          {/* Social */}
           <div>
-            <h3 className="font-display font-bold text-lg mb-4">Our Partners</h3>
-            <div className="grid grid-cols-3 gap-4 mb-6">
-              {/* Partner logos will be added later */}
-              <div className="bg-white p-2 rounded border border-gray-200 flex items-center justify-center">
-                <span className="text-xs text-gray-400">Marabu</span>
-              </div>
-              <div className="bg-white p-2 rounded border border-gray-200 flex items-center justify-center">
-                <span className="text-xs text-gray-400">Fujifilm</span>
-              </div>
-              <div className="bg-white p-2 rounded border border-gray-200 flex items-center justify-center">
-                <span className="text-xs text-gray-400">Trelleborg</span>
-              </div>
-            </div>
+            <h3 className="font-display font-bold text-lg mb-4">Follow Us</h3>
             <div className="flex space-x-4">
               <a
                 href="https://twitter.com/mascoprint"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackExternalLink('https://twitter.com/mascoprint', 'Twitter')}
                 className="text-gray-400 hover:text-primary-600"
               >
                 <span className="sr-only">Twitter</span>
@@ -93,6 +90,7 @@ export function Footer() {
                 href="https://youtube.com/@mascoprint"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackExternalLink('https://youtube.com/@mascoprint', 'YouTube')}
                 className="text-gray-400 hover:text-primary-600"
               >
                 <span className="sr-only">YouTube</span>

@@ -164,7 +164,7 @@ function ProductSection({ product, index }: { product: typeof products[0], index
     }
   }, [showVideo])
 
-  const isEven = index % 2 === 0
+  const isEven = product.id === 'hand-bases' ? false : index % 2 !== 0
 
   return (
     <div className="relative">
@@ -298,7 +298,7 @@ function ProductSection({ product, index }: { product: typeof products[0], index
               </a>
             )}
             <Button href="/contact" size="lg" className="w-full bg-brand-600 hover:bg-brand-700 text-white border-0 text-lg font-semibold shadow-lg shadow-brand-600/25">
-              Request a Quote
+              Enquire Now
             </Button>
           </div>
         </div>

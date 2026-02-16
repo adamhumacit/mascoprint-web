@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { trackEvent } from '@/lib/analytics'
 
 interface FormData {
   name: string
@@ -40,9 +41,15 @@ export function ContactForm() {
 
       setSubmitStatus('success')
       reset()
+
+      // Track successful form submission
+      trackEvent('submit', 'form', 'contact_form_success')
     } catch (error) {
       console.error('Form submission error:', error)
       setSubmitStatus('error')
+
+      // Track form submission error
+      trackEvent('error', 'form', 'contact_form_error')
     }
   }
 
