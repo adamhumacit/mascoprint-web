@@ -1,0 +1,206 @@
+'use client'
+
+import { useState } from 'react'
+import { useForm } from 'react-hook-form'
+
+interface FormData {
+  name: string
+  email: string
+  phone: string
+  message: string
+}
+
+export function ContactForm() {
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+    reset,
+  } = useForm<FormData>({
+    mode: 'onBlur', // Validate on blur for better UX
+  })
+
+  const onSubmit = async (data: FormData) => {
+    setSubmitStatus('idle')
+
+    try {
+      // Simulate API call - Replace this with your actual form submission logic
+      await new Promise(resolve => setTimeout(resolve, 2000))
+
+      // TODO: Replace with actual API endpoint
+      // const response = await fetch('/api/contact', {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify(data),
+      // })
+
+      // if (!response.ok) throw new Error('Failed to send message')
+
+      setSubmitStatus('success')
+      reset()
+    } catch (error) {
+      console.error('Form submission error:', error)
+      setSubmitStatus('error')
+    }
+  }
+
+  return (
+    <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-3xl p-10 md:p-12 relative overflow-hidden">
+      <div
+        className="absolute inset-0 opacity-[0.03]"
+        style={{
+          backgroundImage: 'linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px)',
+          backgroundSize: '32px 32px'
+        }}
+      />
+      <div className="absolute top-0 right-0 w-64 h-64 bg-brand-600/20 rounded-full blur-3xl" />
+
+      <div className="relative z-10">
+        <div className="mb-8">
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-white mb-3">
+            Send us a message
+          </h2>
+          <div className="h-1 w-16 bg-brand-600 rounded-full" />
+        </div>
+
+        {/* Success Message */}
+        {submitStatus === 'success' && (
+          <div className="mb-6 p-4 bg-green-600/20 border-2 border-green-500/50 rounded-lg backdrop-blur-sm">
+            <div className="flex items-start gap-3">
+              <svg className="w-6 h-6 text-green-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+              </svg>
+              <div>
+                <p className="text-white font-semibold">Message sent successfully!</p>
+                <p className="text-white/80 text-sm mt-1">We'll get back to you as soon as possible.</p>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Error Message */}
+        {submitStatus === 'error' && (
+          <div className="mb-6 p-4 bg-red-600/20 border-2 border-red-500/50 rounded-lg backdrop-blur-sm">
+            <div className="flex items-start gap-3">
+              <svg className="w-6 h-6 text-red-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+              </svg>
+              <div>
+                <p className="text-white font-semibold">Failed to send message</p>
+                <p className="text-white/80 text-sm mt-1">Please try again or contact us directly via email.</p>
+              </div>
+            </div>
+          </div>
+        )}
+
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+          <div>
+            <label htmlFor="name" className="block text-sm font-semibold text-white mb-2">
+              Name *
+            </label>
+            <input
+              type="text"
+              id="name"
+              {...register('name', {
+                required: 'Name is required',
+                minLength: { value: 2, message: 'Name must be at least 2 characters' },
+              })}
+              className={`w-full px-4 py-3 bg-white/10 border-2 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-brand-600 transition-all backdrop-blur-sm ${
+                errors.name ? 'border-red-500/50' : 'border-white/20 focus:border-brand-600'
+              }`}
+              placeholder="Your name"
+              disabled={isSubmitting}
+              aria-invalid={errors.name ? 'true' : 'false'}
+            />
+            {errors.name && (
+              <p className="mt-1 text-sm text-red-400">{errors.name.message}</p>
+            )}
+          </div>
+
+          <div>
+            <label htmlFor="email" className="block text-sm font-semibold text-white mb-2">
+              Email *
+            </label>
+            <input
+              type="email"
+              id="email"
+              {...register('email', {
+                required: 'Email is required',
+                pattern: {
+                  value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                  message: 'Please enter a valid email address',
+                },
+              })}
+              className={`w-full px-4 py-3 bg-white/10 border-2 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-brand-600 transition-all backdrop-blur-sm ${
+                errors.email ? 'border-red-500/50' : 'border-white/20 focus:border-brand-600'
+              }`}
+              placeholder="your@email.com"
+              disabled={isSubmitting}
+              aria-invalid={errors.email ? 'true' : 'false'}
+            />
+            {errors.email && (
+              <p className="mt-1 text-sm text-red-400">{errors.email.message}</p>
+            )}
+          </div>
+
+          <div>
+            <label htmlFor="phone" className="block text-sm font-semibold text-white mb-2">
+              Phone
+            </label>
+            <input
+              type="tel"
+              id="phone"
+              {...register('phone')}
+              className="w-full px-4 py-3 bg-white/10 border-2 border-white/20 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-brand-600 focus:border-brand-600 transition-all backdrop-blur-sm"
+              placeholder="+44 (0)1234 567890"
+              disabled={isSubmitting}
+            />
+          </div>
+
+          <div>
+            <label htmlFor="message" className="block text-sm font-semibold text-white mb-2">
+              Message *
+            </label>
+            <textarea
+              id="message"
+              rows={6}
+              {...register('message', {
+                required: 'Message is required',
+                minLength: { value: 10, message: 'Message must be at least 10 characters' },
+              })}
+              className={`w-full px-4 py-3 bg-white/10 border-2 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-brand-600 transition-all backdrop-blur-sm resize-none ${
+                errors.message ? 'border-red-500/50' : 'border-white/20 focus:border-brand-600'
+              }`}
+              placeholder="Tell us about your project..."
+              disabled={isSubmitting}
+              aria-invalid={errors.message ? 'true' : 'false'}
+            />
+            {errors.message && (
+              <p className="mt-1 text-sm text-red-400">{errors.message.message}</p>
+            )}
+          </div>
+
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className="w-full bg-brand-600 hover:bg-brand-700 disabled:bg-gray-600 disabled:cursor-not-allowed text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all shadow-xl shadow-brand-600/25 hover:shadow-2xl hover:shadow-brand-600/30 flex items-center justify-center gap-2"
+          >
+            {isSubmitting ? (
+              <>
+                <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Sending...
+              </>
+            ) : (
+              'Send Message'
+            )}
+          </button>
+        </form>
+      </div>
+    </div>
+  )
+}

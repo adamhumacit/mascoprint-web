@@ -2,11 +2,11 @@
 
 import type { Metadata } from 'next'
 import Image from 'next/image'
-import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { Container } from '@/components/ui/Container'
 import { Section } from '@/components/ui/Section'
 import { Button } from '@/components/ui/Button'
+import { Skeleton } from '@/components/ui/Skeleton'
 
 const products = [
   {
@@ -74,6 +74,8 @@ const products = [
 
 function ProductGallery({ images }: { images: string[] }) {
   const [selectedImage, setSelectedImage] = useState(0)
+  const [imageLoading, setImageLoading] = useState(true)
+  const [thumbnailsLoading, setThumbnailsLoading] = useState<Record<number, boolean>>({})
 
   if (images.length === 0) {
     return null
@@ -83,12 +85,21 @@ function ProductGallery({ images }: { images: string[] }) {
     <div className="space-y-4">
       {/* Main Image */}
       <div className="relative h-[500px] bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl overflow-hidden border-2 border-gray-200 group">
+        {imageLoading && (
+          <div className="absolute inset-0 flex items-center justify-center p-8">
+            <Skeleton className="w-full h-full rounded-lg" animation="wave" />
+          </div>
+        )}
         <Image
           src={images[selectedImage]}
           alt={`Product image ${selectedImage + 1}`}
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 600px"
-          className="object-contain p-8 group-hover:scale-105 transition-transform duration-500"
+          className={`object-contain p-8 group-hover:scale-105 transition-all duration-500 ${
+            imageLoading ? 'opacity-0' : 'opacity-100'
+          }`}
+          onLoad={() => setImageLoading(false)}
+          priority={selectedImage === 0}
         />
       </div>
 
@@ -98,19 +109,30 @@ function ProductGallery({ images }: { images: string[] }) {
           {images.map((image, index) => (
             <button
               key={index}
-              onClick={() => setSelectedImage(index)}
+              onClick={() => {
+                setSelectedImage(index)
+                setImageLoading(true)
+              }}
               className={`relative h-24 bg-gray-50 rounded-lg border-2 transition-all overflow-hidden ${
                 selectedImage === index
                   ? 'border-brand-600 ring-2 ring-brand-200 scale-105'
                   : 'border-gray-200 hover:border-gray-300'
               }`}
             >
+              {thumbnailsLoading[index] !== false && (
+                <div className="absolute inset-0 flex items-center justify-center p-2">
+                  <Skeleton className="w-full h-full rounded" animation="wave" />
+                </div>
+              )}
               <Image
                 src={image}
                 alt={`Thumbnail ${index + 1}`}
                 fill
                 sizes="(max-width: 768px) 25vw, 150px"
-                className="object-contain p-2"
+                className={`object-contain p-2 transition-opacity duration-300 ${
+                  thumbnailsLoading[index] !== false ? 'opacity-0' : 'opacity-100'
+                }`}
+                onLoad={() => setThumbnailsLoading(prev => ({ ...prev, [index]: false }))}
               />
             </button>
           ))}
@@ -194,6 +216,7 @@ function ProductSection({ product, index }: { product: typeof products[0], index
                     <iframe
                       src={product.videoUrl}
                       className="absolute inset-0 w-full h-full"
+                      loading="lazy"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowFullScreen
                     />
@@ -274,11 +297,9 @@ function ProductSection({ product, index }: { product: typeof products[0], index
                 </Button>
               </a>
             )}
-            <Link href="/contact">
-              <Button size="lg" className="w-full bg-brand-600 hover:bg-brand-700 text-white border-0 text-lg font-semibold shadow-lg shadow-brand-600/25">
-                Request a Quote
-              </Button>
-            </Link>
+            <Button href="/contact" size="lg" className="w-full bg-brand-600 hover:bg-brand-700 text-white border-0 text-lg font-semibold shadow-lg shadow-brand-600/25">
+              Request a Quote
+            </Button>
           </div>
         </div>
       </div>
@@ -343,11 +364,9 @@ export default function ProductsPage() {
               <p className="text-xl text-gray-300 mb-10 max-w-2xl mx-auto leading-relaxed">
                 Our expert team can help you select the perfect printing solution for your specific requirements.
               </p>
-              <Link href="/contact">
-                <Button size="lg" className="bg-brand-600 hover:bg-brand-700 text-white border-0 px-8 py-6 text-lg font-semibold shadow-xl shadow-brand-600/25">
-                  Get Expert Advice
-                </Button>
-              </Link>
+              <Button href="/contact" size="lg" className="bg-brand-600 hover:bg-brand-700 text-white border-0 px-8 py-6 text-lg font-semibold shadow-xl shadow-brand-600/25">
+                Get Expert Advice
+              </Button>
             </div>
           </div>
         </Container>

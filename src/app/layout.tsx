@@ -18,6 +18,12 @@ const outfit = Outfit({
   display: 'swap',
 })
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+}
+
 export const metadata: Metadata = {
   title: {
     default: 'Mascoprint - Screen & Pad Printing Specialists',
@@ -63,6 +69,13 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${outfit.variable}`}>
       <head>
+        {/* Preconnect to external domains for faster loading */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+
+        {/* DNS prefetch for external resources */}
+        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+
         <OrganizationSchema />
         <LocalBusinessSchema />
         <WebsiteSchema />

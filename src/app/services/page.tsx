@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
 import Image from 'next/image'
 import { Container } from '@/components/ui/Container'
 import { Section } from '@/components/ui/Section'
@@ -64,11 +63,6 @@ export default function ServicesPage() {
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0" />
-              <div className="absolute bottom-0 left-0 right-0 p-8">
-                <div className="text-6xl md:text-7xl font-bold text-white/20 leading-none tracking-tighter">
-                  01
-                </div>
-              </div>
             </div>
             <div className="space-y-6">
               <div>
@@ -144,11 +138,6 @@ export default function ServicesPage() {
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0" />
-              <div className="absolute bottom-0 left-0 right-0 p-8">
-                <div className="text-6xl md:text-7xl font-bold text-white/20 leading-none tracking-tighter">
-                  02
-                </div>
-              </div>
             </div>
           </div>
         </Container>
@@ -167,7 +156,6 @@ export default function ServicesPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
                   </svg>
                 </div>
-                <div className="text-7xl font-bold text-white/10 leading-none tracking-tighter mb-6">03</div>
                 <h3 className="font-display text-3xl md:text-4xl font-bold mb-4 leading-tight">
                   Artwork Origination
                 </h3>
@@ -195,7 +183,6 @@ export default function ServicesPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                   </svg>
                 </div>
-                <div className="text-7xl font-bold text-white/10 leading-none tracking-tighter mb-6">04</div>
                 <h3 className="font-display text-3xl md:text-4xl font-bold mb-4 leading-tight">
                   Consultancy Services
                 </h3>
@@ -241,16 +228,12 @@ export default function ServicesPage() {
                 Get in touch to discuss your requirements. We'll help you find the perfect solution for your printing needs.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/contact">
-                  <Button size="lg" className="bg-brand-600 hover:bg-brand-700 text-white border-0 px-8 py-6 text-lg font-semibold shadow-xl shadow-brand-600/25">
-                    Contact Us Today
-                  </Button>
-                </Link>
-                <Link href="/case-studies">
-                  <Button size="lg" variant="outline" className="border-white/20 text-white hover:bg-white/10 px-8 py-6 text-lg font-semibold">
-                    View Case Studies
-                  </Button>
-                </Link>
+                <Button href="/contact" size="lg" className="bg-brand-600 hover:bg-brand-700 text-white border-0 px-8 py-6 text-lg font-semibold shadow-xl shadow-brand-600/25">
+                  Contact Us Today
+                </Button>
+                <Button href="/case-studies" size="lg" variant="outline" className="border-white/20 text-white hover:bg-white/10 px-8 py-6 text-lg font-semibold">
+                  View Case Studies
+                </Button>
               </div>
             </div>
           </div>

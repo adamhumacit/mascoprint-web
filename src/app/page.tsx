@@ -1,9 +1,8 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
-import Image from 'next/image'
 import { Container } from '@/components/ui/Container'
 import { Section } from '@/components/ui/Section'
 import { Button } from '@/components/ui/Button'
+import { DynamicPartnerLogos } from '@/components/DynamicComponents'
 
 export const metadata: Metadata = {
   title: 'Home',
@@ -71,37 +70,91 @@ export default function HomePage() {
   return (
     <>
       {/* Hero Section */}
-      <Section spacing="lg" className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-950/[0.02] via-brand-600/[0.01] to-slate-900/[0.02]" />
+      <Section spacing="lg" className="relative overflow-hidden bg-gradient-to-br from-gray-50 via-white to-brand-50/30">
+        {/* Decorative Background Elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {/* Grid Pattern */}
+          <div
+            className="absolute inset-0 opacity-[0.03]"
+            style={{
+              backgroundImage: 'linear-gradient(rgba(2, 132, 199, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(2, 132, 199, 0.1) 1px, transparent 1px)',
+              backgroundSize: '48px 48px'
+            }}
+          />
+          {/* Gradient Blobs */}
+          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-600/10 rounded-full blur-3xl translate-x-1/3 -translate-y-1/3" />
+          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-brand-400/10 rounded-full blur-3xl -translate-x-1/4 translate-y-1/4" />
+
+          {/* Decorative Geometric Shapes */}
+          <div className="absolute top-20 right-1/4 w-32 h-32 border-2 border-brand-600/20 rounded-lg rotate-12 hidden lg:block" />
+          <div className="absolute bottom-32 right-1/3 w-24 h-24 border-2 border-brand-600/10 rounded-full hidden lg:block" />
+        </div>
+
         <Container>
-          <div className="max-w-5xl relative">
-            <div className="inline-flex items-center gap-3 px-5 py-2 bg-brand-600/10 border border-brand-600/20 rounded-full mb-8">
-              <div className="w-2 h-2 bg-brand-600 rounded-full animate-pulse" />
-              <span className="text-sm font-bold text-brand-700 tracking-wide uppercase">
-                Over 50 Years of Excellence
-              </span>
-            </div>
-            <h1 className="font-display text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tight mb-8 leading-[0.9]">
-              50 Years of
-              <br />
-              <span className="text-brand-600">Printing</span>
-              <br />
-              Excellence
-            </h1>
-            <p className="text-xl md:text-2xl lg:text-3xl text-gray-600 mb-12 leading-relaxed max-w-3xl">
-              A family-owned business specialising in screen and pad printing solutions for industrial applications.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <Link href="/contact">
-                <Button size="lg" className="bg-brand-600 hover:bg-brand-700 text-white border-0 px-8 py-6 text-lg font-semibold shadow-xl shadow-brand-600/25">
+          <div className="grid lg:grid-cols-2 gap-12 items-center relative">
+            {/* Text Content */}
+            <div className="relative z-10">
+              <div className="inline-flex items-center gap-3 px-5 py-2 bg-brand-600/10 border border-brand-600/20 rounded-full mb-8">
+                <div className="w-2 h-2 bg-brand-600 rounded-full animate-pulse" />
+                <span className="text-sm font-bold text-brand-700 tracking-wide uppercase">
+                  Over 50 Years of Excellence
+                </span>
+              </div>
+              <h1 className="font-display text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight mb-8 leading-[0.9]">
+                Over 50 Years of
+                <br />
+                <span className="text-brand-600">Printing</span>
+                <br />
+                Excellence
+              </h1>
+              <p className="text-xl md:text-2xl text-gray-600 mb-12 leading-relaxed">
+                A family-owned business specialising in screen and pad printing solutions for industrial applications.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <Button href="/contact" size="lg" className="bg-brand-600 hover:bg-brand-700 text-white border-0 px-8 py-6 text-lg font-semibold shadow-xl shadow-brand-600/25">
                   Get in Touch
                 </Button>
-              </Link>
-              <Link href="/products">
-                <Button size="lg" variant="outline" className="px-8 py-6 text-lg font-semibold border-2">
+                <Button href="/products" size="lg" variant="outline" className="px-8 py-6 text-lg font-semibold border-2">
                   View Products
                 </Button>
-              </Link>
+              </div>
+            </div>
+
+            {/* Visual Element - Decorative Stats/Features */}
+            <div className="relative hidden lg:block">
+              <div className="grid grid-cols-2 gap-6">
+                {/* Stat Card 1 */}
+                <div className="bg-white/80 backdrop-blur-sm border-2 border-brand-600/20 rounded-2xl p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group">
+                  <div className="text-5xl font-bold text-brand-600 mb-2 group-hover:scale-110 transition-transform">50+</div>
+                  <div className="text-sm font-semibold text-gray-700">Years Experience</div>
+                </div>
+
+                {/* Stat Card 2 */}
+                <div className="bg-white/80 backdrop-blur-sm border-2 border-gray-200 rounded-2xl p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group mt-12">
+                  <div className="flex items-center gap-2 mb-2">
+                    <svg className="w-12 h-12 text-gray-900 group-hover:rotate-12 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" />
+                    </svg>
+                  </div>
+                  <div className="text-sm font-semibold text-gray-700">Bespoke Solutions</div>
+                </div>
+
+                {/* Stat Card 3 */}
+                <div className="bg-gradient-to-br from-brand-600 to-brand-700 border-2 border-brand-700 rounded-2xl p-8 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 text-white group">
+                  <div className="text-5xl font-bold mb-2 group-hover:scale-110 transition-transform">UK</div>
+                  <div className="text-sm font-semibold text-white/90">Based & Proud</div>
+                </div>
+
+                {/* Stat Card 4 */}
+                <div className="bg-white/80 backdrop-blur-sm border-2 border-gray-200 rounded-2xl p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group mt-6">
+                  <div className="flex items-center gap-2 mb-2">
+                    <svg className="w-8 h-8 text-brand-600 group-hover:rotate-12 transition-transform" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <div className="text-sm font-semibold text-gray-700">Quality Assured</div>
+                </div>
+              </div>
             </div>
           </div>
         </Container>
@@ -176,11 +229,9 @@ export default function HomePage() {
           </div>
 
           <div className="text-center">
-            <Link href="/services">
-              <Button variant="outline" size="lg" className="border-2">
-                View All Services
-              </Button>
-            </Link>
+            <Button href="/services" variant="outline" size="lg" className="border-2">
+              View All Services
+            </Button>
           </div>
         </Container>
       </Section>
@@ -211,11 +262,9 @@ export default function HomePage() {
           </div>
 
           <div className="text-center">
-            <Link href="/case-studies">
-              <Button variant="outline" size="lg" className="border-2">
-                View Case Studies
-              </Button>
-            </Link>
+            <Button href="/case-studies" variant="outline" size="lg" className="border-2">
+              View Case Studies
+            </Button>
           </div>
         </Container>
       </Section>
@@ -285,76 +334,7 @@ export default function HomePage() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            <a
-              href="https://www.marabu-inks.co.uk/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-white border-2 border-gray-200 rounded-2xl overflow-hidden hover:border-brand-600 transition-colors group"
-            >
-              <div className="relative h-48 bg-gray-50 flex items-center justify-center p-6">
-                <div className="relative w-full h-full">
-                  <Image
-                    src="/images/partners/marabu.png"
-                    alt="Marabu Inks UK"
-                    fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 300px"
-                    className="object-contain group-hover:scale-105 transition-transform"
-                  />
-                </div>
-              </div>
-              <div className="p-6">
-                <h3 className="font-display text-xl font-bold mb-2">Marabu Inks UK</h3>
-                <p className="text-gray-600">Comprehensive range of pad and printing inks</p>
-              </div>
-            </a>
-
-            <a
-              href="https://www.sericol.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-white border-2 border-gray-200 rounded-2xl overflow-hidden hover:border-brand-600 transition-colors group"
-            >
-              <div className="relative h-48 bg-gray-50 flex items-center justify-center p-6">
-                <div className="relative w-[70%] h-[70%]">
-                  <Image
-                    src="/images/partners/sericol.png"
-                    alt="Fujifilm Sericol"
-                    fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 300px"
-                    className="object-contain group-hover:scale-105 transition-transform"
-                  />
-                </div>
-              </div>
-              <div className="p-6">
-                <h3 className="font-display text-xl font-bold mb-2">Fujifilm Sericol</h3>
-                <p className="text-gray-600">Speciality Ink Systems</p>
-              </div>
-            </a>
-
-            <a
-              href="https://www.trelleborg.com/en/applied-technologies/products-and-solutions/screen-printing-squeegee-blades/unitex-ulon-hp"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-white border-2 border-gray-200 rounded-2xl overflow-hidden hover:border-brand-600 transition-colors group"
-            >
-              <div className="relative h-48 bg-gray-50 flex items-center justify-center p-6">
-                <div className="relative w-[70%] h-[70%]">
-                  <Image
-                    src="/images/partners/ulon.png"
-                    alt="Trelleborg ULON"
-                    fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 300px"
-                    className="object-contain group-hover:scale-105 transition-transform"
-                  />
-                </div>
-              </div>
-              <div className="p-6">
-                <h3 className="font-display text-xl font-bold mb-2">Trelleborg ULON</h3>
-                <p className="text-gray-600">Squeegee blades</p>
-              </div>
-            </a>
-          </div>
+          <DynamicPartnerLogos />
         </Container>
       </Section>
 
@@ -379,11 +359,9 @@ export default function HomePage() {
               <p className="text-xl text-gray-300 mb-10 max-w-2xl mx-auto leading-relaxed">
                 Contact us today to discuss your printing requirements and discover how we can help.
               </p>
-              <Link href="/contact">
-                <Button size="lg" className="bg-brand-600 hover:bg-brand-700 text-white border-0 px-8 py-6 text-lg font-semibold shadow-xl shadow-brand-600/25">
-                  Contact Us Today
-                </Button>
-              </Link>
+              <Button href="/contact" size="lg" className="bg-brand-600 hover:bg-brand-700 text-white border-0 px-8 py-6 text-lg font-semibold shadow-xl shadow-brand-600/25">
+                Contact Us Today
+              </Button>
             </div>
           </div>
         </Container>

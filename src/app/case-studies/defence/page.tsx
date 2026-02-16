@@ -180,11 +180,9 @@ export default function DefencePage() {
               <p className="text-xl text-gray-300 mb-10 leading-relaxed">
                 Our team of experts can help develop a custom solution for your defence printing needs.
               </p>
-              <Link href="/contact">
-                <Button size="lg" className="bg-brand-600 hover:bg-brand-700 text-white border-0 px-8 py-6 text-lg font-semibold shadow-xl shadow-brand-600/25">
-                  Discuss Your Project
-                </Button>
-              </Link>
+              <Button href="/contact" size="lg" className="bg-brand-600 hover:bg-brand-700 text-white border-0 px-8 py-6 text-lg font-semibold shadow-xl shadow-brand-600/25">
+                Discuss Your Project
+              </Button>
             </div>
           </div>
         </Container>

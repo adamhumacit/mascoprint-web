@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Container } from '@/components/ui/Container'
 import { Section } from '@/components/ui/Section'
+import { DynamicContactForm } from '@/components/DynamicComponents'
 
 export const metadata: Metadata = {
   title: 'Contact',
@@ -127,89 +128,7 @@ export default function ContactPage() {
 
             {/* Contact Form - Right Side */}
             <div className="lg:col-span-3">
-              <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-3xl p-10 md:p-12 relative overflow-hidden">
-                <div
-                  className="absolute inset-0 opacity-[0.03]"
-                  style={{
-                    backgroundImage: 'linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px)',
-                    backgroundSize: '32px 32px'
-                  }}
-                />
-                <div className="absolute top-0 right-0 w-64 h-64 bg-brand-600/20 rounded-full blur-3xl" />
-
-                <div className="relative z-10">
-                  <div className="mb-8">
-                    <h2 className="font-display text-3xl md:text-4xl font-bold text-white mb-3">
-                      Send us a message
-                    </h2>
-                    <div className="h-1 w-16 bg-brand-600 rounded-full" />
-                  </div>
-
-                  <form className="space-y-6">
-                    <div>
-                      <label htmlFor="name" className="block text-sm font-semibold text-white mb-2">
-                        Name *
-                      </label>
-                      <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        className="w-full px-4 py-3 bg-white/10 border-2 border-white/20 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-brand-600 focus:border-brand-600 transition-all backdrop-blur-sm"
-                        placeholder="Your name"
-                        required
-                      />
-                    </div>
-
-                    <div>
-                      <label htmlFor="email" className="block text-sm font-semibold text-white mb-2">
-                        Email *
-                      </label>
-                      <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        className="w-full px-4 py-3 bg-white/10 border-2 border-white/20 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-brand-600 focus:border-brand-600 transition-all backdrop-blur-sm"
-                        placeholder="your@email.com"
-                        required
-                      />
-                    </div>
-
-                    <div>
-                      <label htmlFor="phone" className="block text-sm font-semibold text-white mb-2">
-                        Phone
-                      </label>
-                      <input
-                        type="tel"
-                        id="phone"
-                        name="phone"
-                        className="w-full px-4 py-3 bg-white/10 border-2 border-white/20 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-brand-600 focus:border-brand-600 transition-all backdrop-blur-sm"
-                        placeholder="+44 (0)1234 567890"
-                      />
-                    </div>
-
-                    <div>
-                      <label htmlFor="message" className="block text-sm font-semibold text-white mb-2">
-                        Message *
-                      </label>
-                      <textarea
-                        id="message"
-                        name="message"
-                        rows={6}
-                        className="w-full px-4 py-3 bg-white/10 border-2 border-white/20 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-brand-600 focus:border-brand-600 transition-all backdrop-blur-sm resize-none"
-                        placeholder="Tell us about your project..."
-                        required
-                      />
-                    </div>
-
-                    <button
-                      type="submit"
-                      className="w-full bg-brand-600 hover:bg-brand-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all shadow-xl shadow-brand-600/25 hover:shadow-2xl hover:shadow-brand-600/30"
-                    >
-                      Send Message
-                    </button>
-                  </form>
-                </div>
-              </div>
+              <DynamicContactForm />
             </div>
           </div>
         </Container>
