@@ -31,17 +31,17 @@
   --color-gray-900: #111827;
   --color-gray-950: #030712;
 
-  /* Accent for CTAs */
-  --color-accent-50: #fef2f2;
-  --color-accent-100: #fee2e2;
-  --color-accent-200: #fecaca;
-  --color-accent-300: #fca5a5;
-  --color-accent-400: #f87171;
-  --color-accent-500: #ef4444;
-  --color-accent-600: #dc2626;
-  --color-accent-700: #b91c1c;
-  --color-accent-800: #991b1b;
-  --color-accent-900: #7f1d1d;
+  /* Brand/Accent Colors - Using logo blue */
+  --color-brand-50: #f0f9ff;
+  --color-brand-100: #e0f2fe;
+  --color-brand-200: #bae6fd;
+  --color-brand-300: #7dd3fc;
+  --color-brand-400: #38bdf8;
+  --color-brand-500: #0ea5e9;
+  --color-brand-600: #0284c7;
+  --color-brand-700: #0369a1;
+  --color-brand-800: #075985;
+  --color-brand-900: #0c4a6e;
 
   /* Typography Scale */
   --font-size-xs: 0.75rem;

@@ -3,6 +3,7 @@ import { Inter, Outfit } from 'next/font/google'
 import './globals.css'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
+import { OrganizationSchema, LocalBusinessSchema, WebsiteSchema } from '@/components/seo/StructuredData'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -38,6 +39,19 @@ export const metadata: Metadata = {
     locale: 'en_GB',
     url: 'https://mascoprint.co.uk',
     siteName: 'Mascoprint',
+    images: [
+      {
+        url: 'https://mascoprint.co.uk/images/logo/mascoprint-logo-main.png',
+        width: 1200,
+        height: 630,
+        alt: 'Mascoprint - Industrial Printing Specialists',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    site: '@mascoprint',
+    creator: '@mascoprint',
   },
 }
 
@@ -48,6 +62,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${outfit.variable}`}>
+      <head>
+        <OrganizationSchema />
+        <LocalBusinessSchema />
+        <WebsiteSchema />
+      </head>
       <body className="font-sans antialiased">
         <Header />
         <main className="min-h-screen">{children}</main>

@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { useState } from 'react'
 import { Container } from '@/components/ui/Container'
 
@@ -21,7 +22,6 @@ const navigation = [
       { name: 'R&D', href: '/case-studies/r-and-d' },
     ],
   },
-  { name: 'News', href: '/news' },
   { name: 'Contact', href: '/contact' },
 ]
 
@@ -34,7 +34,14 @@ export function Header() {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            <span className="text-2xl font-bold font-display">Mascoprint</span>
+            <Image
+              src="/images/logo/mascoprint-logo-main.png"
+              alt="Mascoprint"
+              width={310}
+              height={103}
+              className="h-12 w-auto"
+              priority
+            />
           </Link>
 
           {/* Desktop Navigation */}

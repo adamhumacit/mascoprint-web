@@ -5,7 +5,23 @@ import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card'
 
 export const metadata: Metadata = {
   title: 'About Us',
-  description: 'Learn about Mascoprint - a family-run industrial printing company with over 50 years of experience.',
+  description: 'Mascoprint is a family-run industrial printing company with over 50 years of experience in screen and pad printing. Meet our team and learn about our commitment to quality and service.',
+  openGraph: {
+    title: 'About Us - Mascoprint',
+    description: 'Family-run industrial printing company with over 50 years of experience. Meet our team and learn about our commitment to excellence.',
+    url: 'https://mascoprint.co.uk/about',
+    siteName: 'Mascoprint',
+    type: 'website',
+    locale: 'en_GB',
+  },
+  twitter: {
+    card: 'summary',
+    title: 'About Us - Mascoprint',
+    description: 'Family-run industrial printing company with over 50 years of experience.',
+  },
+  alternates: {
+    canonical: 'https://mascoprint.co.uk/about',
+  },
 }
 
 const team = [

@@ -55,11 +55,6 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/news" className="text-gray-600 hover:text-primary-600">
-                  News
-                </Link>
-              </li>
-              <li>
                 <Link href="/contact" className="text-gray-600 hover:text-primary-600">
                   Contact
                 </Link>
@@ -111,7 +106,7 @@ export function Footer() {
 
         {/* Bottom bar */}
         <div className="border-t border-gray-200 py-6 flex flex-col md:flex-row justify-between items-center text-sm text-gray-600">
-          <p>&copy; 2024 Mascoprint. All rights reserved.</p>
+          <p>&copy; 2026 Mascoprint. All rights reserved.</p>
           <div className="flex space-x-4 mt-4 md:mt-0">
             <p>Company No: 1040660</p>
             <p>VAT: GB 196 9926 85</p>
