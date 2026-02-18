@@ -33,7 +33,7 @@ const services = [
   },
   {
     title: 'Artwork Origination',
-    description: 'Generate, scan, and manipulate artwork using current computer technology including Adobe Illustrator® and Adobe Photoshop®.',
+    description: 'Generate, scan, and manipulate artwork using the latest computer technology including Adobe Illustrator® and Adobe Photoshop®.',
     number: '02',
   },
   {

@@ -161,7 +161,7 @@ export default function ServicesPage() {
                 </h3>
                 <div className="h-1 w-12 bg-brand-600 rounded-full mb-6" />
                 <p className="text-gray-300 text-lg leading-relaxed mb-6">
-                  Generate, scan, and manipulate artwork using current computer technology with professional-grade software.
+                  Generate, scan, and manipulate artwork using the latst computer technology with professional-grade software.
                 </p>
                 <div className="flex flex-wrap gap-3">
                   <div className="px-4 py-2 bg-white/10 rounded-lg text-sm font-medium backdrop-blur-sm border border-white/20">
