@@ -29,7 +29,7 @@ export default function ServicesPage() {
   return (
     <>
       {/* Hero Section */}
-      <Section spacing="lg" className="relative overflow-hidden">
+      <Section spacing="lg" className="relative overflow-hidden pt-14 md:pt-20 pb-10 md:pb-14">
         <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 opacity-[0.02]" />
         <Container>
           <div className="max-w-4xl">
@@ -51,7 +51,7 @@ export default function ServicesPage() {
       </Section>
 
       {/* Service 1: Screen Manufacturing - Image Left */}
-      <Section spacing="md">
+      <Section spacing="sm">
         <Container>
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <div className="relative aspect-[3/4] lg:aspect-[4/5] overflow-hidden rounded-2xl group">

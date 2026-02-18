@@ -73,7 +73,7 @@ export default function CaseStudiesPage() {
   return (
     <>
       {/* Hero Section */}
-      <Section spacing="lg" className="relative overflow-hidden">
+      <Section spacing="lg" className="relative overflow-hidden pt-14 md:pt-20 pb-10 md:pb-14">
         <div className="absolute inset-0 bg-gradient-to-br from-slate-950/[0.02] via-brand-600/[0.01] to-slate-900/[0.02]" />
         <Container>
           <div className="max-w-4xl relative">
@@ -95,7 +95,7 @@ export default function CaseStudiesPage() {
       </Section>
 
       {/* Industries Grid */}
-      <Section spacing="lg">
+      <Section spacing="md">
         <Container>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {industries.map((industry) => (

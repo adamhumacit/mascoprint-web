@@ -70,7 +70,7 @@ export default function HomePage() {
   return (
     <>
       {/* Hero Section */}
-      <Section spacing="lg" className="relative overflow-hidden bg-gradient-to-br from-gray-50 via-white to-brand-50/30">
+      <Section spacing="lg" className="relative overflow-hidden bg-gradient-to-br from-gray-50 via-white to-brand-50/30 pt-14 md:pt-20 pb-10 md:pb-14">
         {/* Decorative Background Elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           {/* Grid Pattern */}

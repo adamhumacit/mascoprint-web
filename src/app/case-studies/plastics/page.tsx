@@ -61,7 +61,7 @@ export default function PlasticsPage() {
       </Section>
 
       {/* Content Sections */}
-      <Section spacing="lg">
+      <Section spacing="sm">
         <Container>
           <div className="max-w-4xl mx-auto space-y-16">
             {/* Section 1: Project Overview */}
