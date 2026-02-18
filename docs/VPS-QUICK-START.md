@@ -95,8 +95,14 @@ server {
     listen 80;
     server_name mascoprint.co.uk www.mascoprint.co.uk;
 
+    # Let's Encrypt ACME challenge
+    location /.well-known/acme-challenge/ {
+        root /var/www/certbot;
+        allow all;
+    }
+
     location / {
-        proxy_pass http://localhost:3000;
+        proxy_pass http://mascoprint-web:3000;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;

@@ -226,9 +226,15 @@ server {
     access_log /var/log/nginx/mascoprint_access.log;
     error_log /var/log/nginx/mascoprint_error.log;
 
+    # Let's Encrypt ACME challenge
+    location /.well-known/acme-challenge/ {
+        root /var/www/certbot;
+        allow all;
+    }
+
     # Proxy to Next.js
     location / {
-        proxy_pass http://localhost:3000;
+        proxy_pass http://mascoprint-web:3000;
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection 'upgrade';
@@ -246,14 +252,14 @@ server {
 
     # Next.js static files
     location /_next/static {
-        proxy_pass http://localhost:3000;
+        proxy_pass http://mascoprint-web:3000;
         proxy_cache_valid 60m;
         add_header Cache-Control "public, max-age=3600, immutable";
     }
 
     # Public static files
     location /images {
-        proxy_pass http://localhost:3000;
+        proxy_pass http://mascoprint-web:3000;
         proxy_cache_valid 60m;
         add_header Cache-Control "public, max-age=3600";
     }
@@ -319,7 +325,16 @@ server {
     listen 80;
     listen [::]:80;
     server_name mascoprint.co.uk www.mascoprint.co.uk;
-    return 301 https://mascoprint.co.uk$request_uri;
+
+    # Let's Encrypt ACME challenge (must be before redirect)
+    location /.well-known/acme-challenge/ {
+        root /var/www/certbot;
+        allow all;
+    }
+
+    location / {
+        return 301 https://mascoprint.co.uk$request_uri;
+    }
 }
 ```
 

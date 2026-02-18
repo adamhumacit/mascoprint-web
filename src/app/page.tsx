@@ -199,6 +199,14 @@ export default function HomePage() {
                 <h3 className="font-display text-2xl font-bold mb-2">Stuart Wing</h3>
                 <p className="text-gray-400">Director</p>
               </div>
+              <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-8">
+                <h3 className="font-display text-2xl font-bold mb-2">Ian Mason</h3>
+                <p className="text-gray-400">Director</p>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-8">
+                <h3 className="font-display text-2xl font-bold mb-2">Yvonne Mason</h3>
+                <p className="text-gray-400">Director</p>
+              </div>
             </div>
           </div>
         </Container>

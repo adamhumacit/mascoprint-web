@@ -199,6 +199,23 @@ sudo nano /etc/nginx/sites-available/mascoprint
 Add the following configuration:
 
 ```nginx
+# Redirect .com domains to .co.uk
+server {
+    listen 80;
+    listen [::]:80;
+    server_name mascoprint.com www.mascoprint.com;
+
+    location /.well-known/acme-challenge/ {
+        root /var/www/certbot;
+        allow all;
+    }
+
+    location / {
+        return 301 https://mascoprint.co.uk$request_uri;
+    }
+}
+
+# Main site
 server {
     listen 80;
     listen [::]:80;
@@ -207,8 +224,14 @@ server {
     # Redirect to HTTPS (will be configured later)
     # return 301 https://$server_name$request_uri;
 
+    # Let's Encrypt ACME challenge
+    location /.well-known/acme-challenge/ {
+        root /var/www/certbot;
+        allow all;
+    }
+
     location / {
-        proxy_pass http://localhost:3000;
+        proxy_pass http://mascoprint-web:3000;
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection 'upgrade';
@@ -259,8 +282,10 @@ sudo apt install -y certbot python3-certbot-nginx
 ### 2. Obtain SSL Certificate
 
 ```bash
-# Get certificate for your domain
-sudo certbot --nginx -d mascoprint.co.uk -d www.mascoprint.co.uk
+# Get certificate for all domains (co.uk + com)
+sudo certbot --nginx \
+  -d mascoprint.co.uk -d www.mascoprint.co.uk \
+  -d mascoprint.com -d www.mascoprint.com
 
 # Follow the prompts:
 # - Enter email address for renewal notifications
@@ -282,6 +307,21 @@ sudo certbot renew --dry-run
 The Nginx config will be automatically updated by Certbot. Verify it looks similar to:
 
 ```nginx
+# Redirect .com (HTTPS) to .co.uk
+server {
+    listen 443 ssl http2;
+    listen [::]:443 ssl http2;
+    server_name mascoprint.com www.mascoprint.com;
+
+    ssl_certificate /etc/letsencrypt/live/mascoprint.co.uk/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/mascoprint.co.uk/privkey.pem;
+    include /etc/letsencrypt/options-ssl-nginx.conf;
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+
+    return 301 https://mascoprint.co.uk$request_uri;
+}
+
+# Main site (HTTPS)
 server {
     listen 443 ssl http2;
     listen [::]:443 ssl http2;
@@ -293,16 +333,54 @@ server {
     ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
 
     location / {
-        proxy_pass http://localhost:3000;
-        # ... rest of proxy config
+        proxy_pass http://mascoprint-web:3000;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_cache_bypass $http_upgrade;
+    }
+
+    # Security headers
+    add_header X-Frame-Options "SAMEORIGIN" always;
+    add_header X-Content-Type-Options "nosniff" always;
+    add_header X-XSS-Protection "1; mode=block" always;
+    add_header Referrer-Policy "no-referrer-when-downgrade" always;
+}
+
+# Redirect .com (HTTP) to .co.uk
+server {
+    listen 80;
+    listen [::]:80;
+    server_name mascoprint.com www.mascoprint.com;
+
+    location /.well-known/acme-challenge/ {
+        root /var/www/certbot;
+        allow all;
+    }
+
+    location / {
+        return 301 https://mascoprint.co.uk$request_uri;
     }
 }
 
+# Redirect .co.uk HTTP to HTTPS
 server {
     listen 80;
     listen [::]:80;
     server_name mascoprint.co.uk www.mascoprint.co.uk;
-    return 301 https://$server_name$request_uri;
+
+    location /.well-known/acme-challenge/ {
+        root /var/www/certbot;
+        allow all;
+    }
+
+    location / {
+        return 301 https://$server_name$request_uri;
+    }
 }
 ```
 
