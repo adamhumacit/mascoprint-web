@@ -1,7 +1,8 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef, useCallback } from 'react'
 import { useForm } from 'react-hook-form'
+import { Turnstile, type TurnstileInstance } from '@marsidev/react-turnstile'
 import { trackEvent } from '@/lib/analytics'
 
 interface FormData {
@@ -9,10 +10,14 @@ interface FormData {
   email: string
   phone: string
   message: string
+  website: string
 }
 
 export function ContactForm() {
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  const [errorMessage, setErrorMessage] = useState('')
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null)
+  const turnstileRef = useRef<TurnstileInstance>(null)
 
   const {
     register,
@@ -20,35 +25,59 @@ export function ContactForm() {
     formState: { errors, isSubmitting },
     reset,
   } = useForm<FormData>({
-    mode: 'onBlur', // Validate on blur for better UX
+    mode: 'onBlur',
   })
+
+  const onTurnstileSuccess = useCallback((token: string) => {
+    setTurnstileToken(token)
+  }, [])
 
   const onSubmit = async (data: FormData) => {
     setSubmitStatus('idle')
+    setErrorMessage('')
+
+    if (!turnstileToken) {
+      setSubmitStatus('error')
+      setErrorMessage('Please complete the verification check.')
+      return
+    }
 
     try {
-      // Simulate API call - Replace this with your actual form submission logic
-      await new Promise(resolve => setTimeout(resolve, 2000))
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: data.name,
+          email: data.email,
+          phone: data.phone || undefined,
+          message: data.message,
+          website: data.website,
+          turnstileToken,
+        }),
+      })
 
-      // TODO: Replace with actual API endpoint
-      // const response = await fetch('/api/contact', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(data),
-      // })
+      const result = await response.json()
 
-      // if (!response.ok) throw new Error('Failed to send message')
+      if (!response.ok) {
+        throw new Error(result.error || 'Failed to send message')
+      }
 
       setSubmitStatus('success')
       reset()
+      setTurnstileToken(null)
+      turnstileRef.current?.reset()
 
-      // Track successful form submission
       trackEvent('submit', 'form', 'contact_form_success')
     } catch (error) {
       console.error('Form submission error:', error)
       setSubmitStatus('error')
+      setErrorMessage(
+        error instanceof Error ? error.message : 'Failed to send message. Please try again.'
+      )
 
-      // Track form submission error
+      setTurnstileToken(null)
+      turnstileRef.current?.reset()
+
       trackEvent('error', 'form', 'contact_form_error')
     }
   }
@@ -96,13 +125,27 @@ export function ContactForm() {
               </svg>
               <div>
                 <p className="text-white font-semibold">Failed to send message</p>
-                <p className="text-white/80 text-sm mt-1">Please try again or contact us directly via email.</p>
+                <p className="text-white/80 text-sm mt-1">
+                  {errorMessage || 'Please try again or contact us directly via email.'}
+                </p>
               </div>
             </div>
           </div>
         )}
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+          {/* Honeypot field — hidden from users, catches bots */}
+          <div className="absolute opacity-0 top-0 left-0 h-0 w-0 -z-10 overflow-hidden" aria-hidden="true">
+            <label htmlFor="website">Website</label>
+            <input
+              type="text"
+              id="website"
+              autoComplete="off"
+              tabIndex={-1}
+              {...register('website')}
+            />
+          </div>
+
           <div>
             <label htmlFor="name" className="block text-sm font-semibold text-white mb-2">
               Name *
@@ -187,6 +230,21 @@ export function ContactForm() {
             {errors.message && (
               <p className="mt-1 text-sm text-red-400">{errors.message.message}</p>
             )}
+          </div>
+
+          {/* Cloudflare Turnstile */}
+          <div className="flex justify-center">
+            <Turnstile
+              ref={turnstileRef}
+              siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
+              onSuccess={onTurnstileSuccess}
+              onError={() => setTurnstileToken(null)}
+              onExpire={() => setTurnstileToken(null)}
+              options={{
+                theme: 'dark',
+                size: 'normal',
+              }}
+            />
           </div>
 
           <button

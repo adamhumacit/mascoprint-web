@@ -8,15 +8,18 @@ This guide covers deploying the Mascoprint Next.js website to a VPS using Docker
 - Root or sudo access to VPS
 - Domain name configured (mascoprint.co.uk)
 - Git installed locally
+- Resend account and API key (for contact form emails)
+- Cloudflare Turnstile site key and secret key (for spam protection)
 
 ## Table of Contents
 
 1. [VPS Initial Setup](#vps-initial-setup)
 2. [Docker Installation](#docker-installation)
 3. [Project Deployment](#project-deployment)
-4. [Nginx Setup](#nginx-setup)
-5. [SSL Configuration](#ssl-configuration)
-6. [Monitoring & Maintenance](#monitoring--maintenance)
+4. [Environment Configuration](#environment-configuration)
+5. [Nginx Setup](#nginx-setup)
+6. [SSL Configuration](#ssl-configuration)
+7. [Monitoring & Maintenance](#monitoring--maintenance)
 
 ---
 
@@ -120,13 +123,44 @@ git clone <your-repository-url> mascoprint-web
 cd mascoprint-web
 ```
 
-### 2. Build and Run Docker Container
+---
+
+## Environment Configuration
+
+The application requires environment variables for email delivery, spam protection, and analytics. All variables are documented in `.env.example` with inline instructions.
 
 ```bash
-# Build the Docker image
+cd ~/projects/mascoprint-web
+
+# Create .env from the sample file
+cp .env.example .env
+
+# Edit and fill in your values — see comments in the file for guidance
+nano .env
+```
+
+You will need credentials from two services:
+
+- **Resend** (contact form email delivery) — sign up at [resend.com](https://resend.com) and create an API key
+- **Cloudflare Turnstile** (spam protection) — create a widget in the [Cloudflare dashboard](https://dash.cloudflare.com) under Turnstile
+
+Verify that required variables are set before proceeding:
+
+```bash
+grep -E '^(RESEND_API_KEY|NEXT_PUBLIC_TURNSTILE_SITE_KEY|TURNSTILE_SECRET_KEY)=' .env
+```
+
+---
+
+### 2. Build and Run Docker Container
+
+Docker Compose automatically reads the `.env` file in the project root and injects the variables into the build and runtime.
+
+```bash
+# Build the Docker image (reads .env for build args)
 docker-compose build
 
-# Start the container
+# Start the container (reads .env for runtime env vars)
 docker-compose up -d
 
 # Check if container is running
@@ -284,6 +318,9 @@ cd ~/projects/mascoprint-web
 # Pull latest changes
 git pull origin main
 
+# Check if .env.example has new variables and update .env accordingly
+diff .env.example .env
+
 # Rebuild and restart containers
 docker-compose down
 docker-compose build --no-cache
@@ -387,4 +424,4 @@ sudo certbot certificates
 ---
 
 **Deployed**: TBD
-**Last Updated**: 2026-02-16
+**Last Updated**: 2026-02-18
