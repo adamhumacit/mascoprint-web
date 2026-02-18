@@ -103,7 +103,7 @@ export default function HomePage() {
               <h1 className="font-display text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight mb-8 leading-[0.9]">
                 Over 50 Years of
                 <br />
-                <span className="text-brand-600">Printing</span>
+                <span className="text-brand-600">Manufacturing</span>
                 <br />
                 Excellence
               </h1>
