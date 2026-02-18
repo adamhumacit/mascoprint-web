@@ -114,8 +114,8 @@ export default function HomePage() {
                 <Button href="/contact" size="lg" className="bg-brand-600 hover:bg-brand-700 text-white border-0 px-8 py-6 text-lg font-semibold shadow-xl shadow-brand-600/25">
                   Get in Touch
                 </Button>
-                <Button href="/products" size="lg" variant="outline" className="px-8 py-6 text-lg font-semibold border-2">
-                  View Products
+                <Button href="/services" size="lg" variant="outline" className="px-8 py-6 text-lg font-semibold border-2">
+                  View Services
                 </Button>
               </div>
             </div>
