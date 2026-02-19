@@ -6,10 +6,10 @@ import { ContactInfo } from '@/components/contact/ContactInfo'
 
 export const metadata: Metadata = {
   title: 'Contact',
-  description: 'Contact Mascoprint for industrial screen and pad printing solutions. Based in Coalville, Leicestershire. Phone: 01530 510 027 | Email: office@mascoprint.co.uk',
+  description: 'Contact Mascoprint for industrial screen and pad printing solutions. Based in Hemel Hempstead, Hertfordshire. Phone: 01582 791 190 | Email: office@mascoprint.co.uk',
   openGraph: {
     title: 'Contact - Mascoprint',
-    description: 'Get in touch with Mascoprint for industrial printing solutions. Based in Coalville, Leicestershire.',
+    description: 'Get in touch with Mascoprint for industrial printing solutions. Based in Hemel Hempstead, Hertfordshire.',
     url: 'https://mascoprint.co.uk/contact',
     siteName: 'Mascoprint',
     type: 'website',
