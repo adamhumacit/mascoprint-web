@@ -118,6 +118,20 @@ export function Footer() {
             </Link>
           </div>
         </div>
+
+        <div className="border-t border-gray-100 py-3 text-center">
+          <p className="text-xs text-gray-400">
+            Site by{' '}
+            <a
+              href="https://humacit.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-gray-500"
+            >
+              HumacIT
+            </a>
+          </p>
+        </div>
       </Container>
     </footer>
   )
