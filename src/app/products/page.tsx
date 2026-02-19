@@ -28,7 +28,7 @@ const products = [
       '/images/products/cp12-4.webp',
     ],
     videoUrl: 'https://www.youtube.com/embed/w5FGew6sOk8',
-    datasheetUrl: 'https://mascoprint.co.uk/wp-content/uploads/2023/05/Mascoprint-CP12-Data-sheet.pdf',
+    datasheetUrl: '/documents/Mascoprint-CP12-Data-sheet.pdf',
   },
   {
     id: 'tampograf',
