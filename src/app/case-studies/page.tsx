@@ -122,9 +122,9 @@ export default function CaseStudiesPage() {
                         </svg>
                       </div>
 
-                      <h3 className="font-display text-3xl font-bold group-hover:text-brand-600 transition-colors">
+                      <h2 className="font-display text-3xl font-bold group-hover:text-brand-600 transition-colors">
                         {industry.name}
-                      </h3>
+                      </h2>
 
                       <div className="h-1 w-12 bg-brand-600/20 group-hover:bg-brand-600 group-hover:w-20 rounded-full transition-all" />
 

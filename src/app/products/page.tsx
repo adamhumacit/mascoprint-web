@@ -72,7 +72,7 @@ const products = [
   },
 ]
 
-function ProductGallery({ images }: { images: string[] }) {
+function ProductGallery({ images, productTitle }: { images: string[], productTitle: string }) {
   const [selectedImage, setSelectedImage] = useState(0)
   const [imageLoading, setImageLoading] = useState(true)
   const [thumbnailsLoading, setThumbnailsLoading] = useState<Record<number, boolean>>({})
@@ -92,7 +92,7 @@ function ProductGallery({ images }: { images: string[] }) {
         )}
         <Image
           src={images[selectedImage]}
-          alt={`Product image ${selectedImage + 1}`}
+          alt={`${productTitle} - image ${selectedImage + 1}`}
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 600px"
           className={`object-contain p-8 group-hover:scale-105 transition-all duration-500 ${
@@ -126,7 +126,7 @@ function ProductGallery({ images }: { images: string[] }) {
               )}
               <Image
                 src={image}
-                alt={`Thumbnail ${index + 1}`}
+                alt={`${productTitle} - thumbnail ${index + 1}`}
                 fill
                 sizes="(max-width: 768px) 25vw, 150px"
                 className={`object-contain p-2 transition-opacity duration-300 ${
@@ -172,7 +172,7 @@ function ProductSection({ product, index }: { product: typeof products[0], index
         {/* Image Gallery */}
         {product.images.length > 0 ? (
           <div className={isEven ? '' : 'lg:col-start-2'}>
-            <ProductGallery images={product.images} />
+            <ProductGallery images={product.images} productTitle={product.title} />
 
             {/* Video Button */}
             {product.videoUrl && (
