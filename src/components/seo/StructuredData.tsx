@@ -29,6 +29,7 @@ export function OrganizationSchema() {
     sameAs: [
       'https://twitter.com/mascoprint',
       'https://www.youtube.com/@mascoprint',
+      'https://uk.linkedin.com/company/mascoprint-developments-limited',
     ],
   }
 
@@ -107,6 +108,99 @@ export function LocalBusinessSchema() {
         },
       ],
     },
+  }
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  )
+}
+
+export function BreadcrumbSchema({ items }: { items: { name: string; url: string }[] }) {
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.name,
+      item: item.url,
+    })),
+  }
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  )
+}
+
+export function ProductSchema({
+  name,
+  description,
+  image,
+  brand,
+  category,
+  url,
+}: {
+  name: string
+  description: string
+  image?: string
+  brand?: string
+  category?: string
+  url: string
+}) {
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name,
+    description,
+    ...(image && { image }),
+    brand: {
+      '@type': 'Brand',
+      name: brand || 'Mascoprint',
+    },
+    ...(category && { category }),
+    url,
+    manufacturer: {
+      '@type': 'Organization',
+      name: 'Mascoprint Developments Ltd',
+      url: 'https://mascoprint.co.uk',
+    },
+    offers: {
+      '@type': 'Offer',
+      availability: 'https://schema.org/InStock',
+      priceCurrency: 'GBP',
+      seller: {
+        '@type': 'Organization',
+        name: 'Mascoprint Developments Ltd',
+      },
+    },
+  }
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  )
+}
+
+export function FAQSchema({ faqs }: { faqs: { question: string; answer: string }[] }) {
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+      },
+    })),
   }
 
   return (

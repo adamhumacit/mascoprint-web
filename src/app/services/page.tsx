@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { Container } from '@/components/ui/Container'
 import { Section } from '@/components/ui/Section'
 import { Button } from '@/components/ui/Button'
+import { FAQSchema, BreadcrumbSchema } from '@/components/seo/StructuredData'
 
 export const metadata: Metadata = {
   title: 'Services',
@@ -28,6 +29,28 @@ export const metadata: Metadata = {
 export default function ServicesPage() {
   return (
     <>
+      <BreadcrumbSchema items={[
+        { name: 'Home', url: 'https://mascoprint.co.uk' },
+        { name: 'Services', url: 'https://mascoprint.co.uk/services' },
+      ]} />
+      <FAQSchema faqs={[
+        {
+          question: 'What screen printing services does Mascoprint offer?',
+          answer: 'Mascoprint offers comprehensive screen solutions including frames (wood, steel, and aluminium), mesh only, stretched screens, pre-sensitised screens, and ready-to-use exposed screens. We work with mesh grades from 10-180 threads per cm and film/emulsion stencils from 12-300+ microns.',
+        },
+        {
+          question: 'What are cliché thin steel plates used for?',
+          answer: 'Cliché thin steel plates are precision-etched plates used for pad printing applications. Mascoprint provides high-quality etching services on 0.5mm and 0.3mm thin steel plates, delivering consistent results for demanding industrial pad printing.',
+        },
+        {
+          question: 'What artwork origination services are available?',
+          answer: 'Mascoprint provides professional artwork origination using the latest computer technology, including Adobe Illustrator and Adobe Photoshop. We can generate, scan, and manipulate artwork to meet your printing requirements.',
+        },
+        {
+          question: 'Does Mascoprint offer printing consultancy?',
+          answer: 'Yes, Mascoprint offers expert consultancy services drawing on over 50 years of experience. We provide guidance on equipment and consumables, technical requirements support, and production environment solutions to help you find the best approach for your project.',
+        },
+      ]} />
       {/* Hero Section */}
       <Section spacing="lg" className="relative overflow-hidden pt-14 md:pt-20 pb-10 md:pb-14">
         <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 opacity-[0.02]" />

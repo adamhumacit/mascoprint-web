@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { Container } from '@/components/ui/Container'
 import { Section } from '@/components/ui/Section'
 import { Button } from '@/components/ui/Button'
+import { BreadcrumbSchema } from '@/components/seo/StructuredData'
 
 export const metadata: Metadata = {
   title: 'Aerospace Case Studies',
@@ -28,6 +29,11 @@ export const metadata: Metadata = {
 export default function AerospacePage() {
   return (
     <>
+      <BreadcrumbSchema items={[
+        { name: 'Home', url: 'https://mascoprint.co.uk' },
+        { name: 'Case Studies', url: 'https://mascoprint.co.uk/case-studies' },
+        { name: 'Aerospace', url: 'https://mascoprint.co.uk/case-studies/aerospace' },
+      ]} />
       {/* Hero Section */}
       <Section spacing="sm" className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-slate-950/[0.02] via-brand-600/[0.01] to-slate-900/[0.02]" />
