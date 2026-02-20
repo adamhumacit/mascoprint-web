@@ -3,27 +3,7 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import { Skeleton } from '@/components/ui/Skeleton'
-
-const partners = [
-  {
-    name: 'Marabu Inks UK',
-    url: 'https://www.marabu-inks.co.uk/',
-    image: '/images/partners/marabu.webp',
-    description: 'Comprehensive range of pad and printing inks',
-  },
-  {
-    name: 'Fujifilm Sericol',
-    url: 'https://www.sericol.com/',
-    image: '/images/partners/sericol.webp',
-    description: 'Speciality Ink Systems',
-  },
-  {
-    name: 'Trelleborg ULON',
-    url: 'https://www.trelleborg.com/en/applied-technologies/products-and-solutions/screen-printing-squeegee-blades/unitex-ulon-hp',
-    image: '/images/partners/ulon.webp',
-    description: 'Squeegee blades',
-  },
-]
+import { partners } from '@/config/partners'
 
 export function PartnerLogos() {
   const [loadingStates, setLoadingStates] = useState<Record<number, boolean>>({
