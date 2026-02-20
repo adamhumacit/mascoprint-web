@@ -105,7 +105,7 @@ export async function sendContactEmail(
 
   try {
     const { error } = await getResendClient().emails.send({
-      from: 'Mascoprint Website <onboarding@resend.dev>',
+      from: 'Mascoprint Website <no-reply@mascoprint.co.uk>',
       to: [to],
       replyTo: data.email,
       subject: `New enquiry from ${data.name}`,
