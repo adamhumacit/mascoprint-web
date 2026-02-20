@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { Container } from '@/components/ui/Container'
 import { trackPhoneClick, trackEmailClick, trackExternalLink } from '@/lib/analytics'
+import { CONTACT } from '@/config/contact'
 
 export function Footer() {
   return (
@@ -12,39 +13,41 @@ export function Footer() {
           {/* Company Info */}
           <div>
             <h3 className="font-display font-bold text-lg mb-4">Mascoprint</h3>
-            <p className="text-sm text-gray-600 mb-2">
-              Stags End Cottage Barn
-              <br />
-              Gaddesden Row
-              <br />
-              Hemel Hempstead
-              <br />
-              Hertfordshire
-            </p>
-            <p className="text-sm text-gray-600">
-              <strong>Phone:</strong>{' '}
-              <a
-                href="tel:+441582791190"
-                onClick={trackPhoneClick}
-                className="hover:text-primary-600"
-              >
-                +44 (0)1582 791190
-              </a>
-            </p>
-            <p className="text-sm text-gray-600">
-              <strong>Email:</strong>{' '}
-              <a
-                href="mailto:office@mascoprint.co.uk"
-                onClick={trackEmailClick}
-                className="hover:text-primary-600"
-              >
-                office@mascoprint.co.uk
-              </a>
-            </p>
+            <address className="not-italic">
+              <p className="text-sm text-gray-600 mb-2">
+                {CONTACT.address.street}
+                <br />
+                {CONTACT.address.area}
+                <br />
+                {CONTACT.address.city}
+                <br />
+                {CONTACT.address.county}
+              </p>
+              <p className="text-sm text-gray-600">
+                <strong>Phone:</strong>{' '}
+                <a
+                  href={`tel:${CONTACT.phone}`}
+                  onClick={trackPhoneClick}
+                  className="hover:text-primary-600"
+                >
+                  {CONTACT.phoneDisplay}
+                </a>
+              </p>
+              <p className="text-sm text-gray-600">
+                <strong>Email:</strong>{' '}
+                <a
+                  href={`mailto:${CONTACT.email}`}
+                  onClick={trackEmailClick}
+                  className="hover:text-primary-600"
+                >
+                  {CONTACT.email}
+                </a>
+              </p>
+            </address>
           </div>
 
           {/* Quick Links */}
-          <div>
+          <nav aria-label="Quick Links">
             <h3 className="font-display font-bold text-lg mb-4">Quick Links</h3>
             <ul className="space-y-2 text-sm">
               <li>
@@ -68,7 +71,7 @@ export function Footer() {
                 </Link>
               </li>
             </ul>
-          </div>
+          </nav>
 
           {/* Social */}
           <div>
@@ -118,8 +121,8 @@ export function Footer() {
         <div className="border-t border-gray-200 py-6 flex flex-col md:flex-row justify-between items-center text-sm text-gray-600">
           <p>&copy; {new Date().getFullYear()} Mascoprint. All rights reserved.</p>
           <div className="flex space-x-4 mt-4 md:mt-0">
-            <p>Company No: 1040660</p>
-            <p>VAT: GB 196 9926 85</p>
+            <p>Company No: {CONTACT.companyNo}</p>
+            <p>VAT: {CONTACT.vatNo}</p>
           </div>
           <div className="flex space-x-4 mt-4 md:mt-0">
             <Link href="/privacy-policy" className="hover:text-primary-600">

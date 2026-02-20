@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { useState, useEffect, useRef } from 'react'
 import { Container } from '@/components/ui/Container'
 import { trackPhoneClick, trackEmailClick } from '@/lib/analytics'
+import { CONTACT } from '@/config/contact'
 
 const navigation = [
   { name: 'Home', href: '/' },
@@ -141,6 +142,8 @@ export function Header() {
                 {item.submenu ? (
                   <button
                     onClick={() => toggleDesktopDropdown(item.name)}
+                    aria-expanded={openDesktopDropdown === item.name}
+                    aria-haspopup="true"
                     className="text-gray-700 hover:text-primary-600 font-medium transition-colors flex items-center gap-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded px-2 py-1"
                   >
                     {item.name}
@@ -194,18 +197,18 @@ export function Header() {
           {/* Contact Info */}
           <div className="hidden xl:flex items-center space-x-6 text-sm">
             <a
-              href="tel:+441582791190"
+              href={`tel:${CONTACT.phone}`}
               onClick={trackPhoneClick}
               className="text-gray-600 hover:text-primary-600"
             >
-              +44 (0)1582 791190
+              {CONTACT.phoneDisplay}
             </a>
             <a
-              href="mailto:office@mascoprint.co.uk"
+              href={`mailto:${CONTACT.email}`}
               onClick={trackEmailClick}
               className="text-gray-600 hover:text-primary-600"
             >
-              office@mascoprint.co.uk
+              {CONTACT.email}
             </a>
           </div>
 
@@ -214,8 +217,9 @@ export function Header() {
             type="button"
             className="lg:hidden p-2"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-expanded={mobileMenuOpen}
           >
-            <span className="sr-only">Open menu</span>
+            <span className="sr-only">{mobileMenuOpen ? 'Close menu' : 'Open menu'}</span>
             {/* Hamburger icon */}
             <svg
               className="h-6 w-6"
@@ -250,6 +254,8 @@ export function Header() {
                   <>
                     <button
                       onClick={() => toggleMobileSubmenu(item.name)}
+                      aria-expanded={openMobileSubmenu === item.name}
+                      aria-haspopup="true"
                       className="w-full flex items-center justify-between px-4 py-3 text-gray-700 hover:bg-gray-50 font-medium transition-colors rounded-lg"
                     >
                       <span>{item.name}</span>
@@ -303,24 +309,24 @@ export function Header() {
             {/* Mobile Contact Info */}
             <div className="border-t border-gray-200 mt-4 pt-4 px-4 space-y-3">
               <a
-                href="tel:+441582791190"
+                href={`tel:${CONTACT.phone}`}
                 onClick={trackPhoneClick}
                 className="flex items-center gap-3 text-gray-600 hover:text-brand-600 transition-colors"
               >
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                 </svg>
-                <span className="text-sm">+44 (0)1582 791190</span>
+                <span className="text-sm">{CONTACT.phoneDisplay}</span>
               </a>
               <a
-                href="mailto:office@mascoprint.co.uk"
+                href={`mailto:${CONTACT.email}`}
                 onClick={trackEmailClick}
                 className="flex items-center gap-3 text-gray-600 hover:text-brand-600 transition-colors"
               >
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
-                <span className="text-sm">office@mascoprint.co.uk</span>
+                <span className="text-sm">{CONTACT.email}</span>
               </a>
             </div>
           </nav>

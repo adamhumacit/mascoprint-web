@@ -8,19 +8,19 @@ const partners = [
   {
     name: 'Marabu Inks UK',
     url: 'https://www.marabu-inks.co.uk/',
-    image: '/images/partners/marabu.png',
+    image: '/images/partners/marabu.webp',
     description: 'Comprehensive range of pad and printing inks',
   },
   {
     name: 'Fujifilm Sericol',
     url: 'https://www.sericol.com/',
-    image: '/images/partners/sericol.png',
+    image: '/images/partners/sericol.webp',
     description: 'Speciality Ink Systems',
   },
   {
     name: 'Trelleborg ULON',
     url: 'https://www.trelleborg.com/en/applied-technologies/products-and-solutions/screen-printing-squeegee-blades/unitex-ulon-hp',
-    image: '/images/partners/ulon.png',
+    image: '/images/partners/ulon.webp',
     description: 'Squeegee blades',
   },
 ]
@@ -44,6 +44,7 @@ export function PartnerLogos() {
           href={partner.url}
           target="_blank"
           rel="noopener noreferrer"
+          aria-label={`Visit ${partner.name}`}
           className="bg-white border-2 border-gray-200 rounded-2xl overflow-hidden hover:border-brand-600 transition-colors group"
         >
           <div className="relative h-48 bg-gray-50 flex items-center justify-center p-6">

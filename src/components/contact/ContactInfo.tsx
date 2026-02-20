@@ -1,13 +1,14 @@
 'use client'
 
 import { trackPhoneClick, trackEmailClick } from '@/lib/analytics'
+import { CONTACT } from '@/config/contact'
 
 export function ContactInfo() {
   return (
     <div className="lg:col-span-2 space-y-8">
       {/* Address */}
       <div className="relative group">
-        <div className="absolute -top-3 -left-3 text-7xl font-bold text-brand-600/5 leading-none pointer-events-none">
+        <div className="absolute -top-3 -left-3 text-7xl font-bold text-brand-600/5 leading-none pointer-events-none" aria-hidden="true">
           01
         </div>
         <div className="relative bg-white border-2 border-gray-200 rounded-2xl p-8 hover:border-brand-600 transition-colors">
@@ -18,24 +19,24 @@ export function ContactInfo() {
             </svg>
           </div>
           <h3 className="font-display text-xl font-bold mb-4">Address</h3>
-          <div className="space-y-1 text-gray-600">
-            <p className="font-semibold">Mascoprint Developments Ltd</p>
-            <p>Stags End Cottage Barn</p>
-            <p>Gaddesden Row</p>
-            <p>Hemel Hempstead</p>
-            <p>Hertfordshire</p>
-            <p>HP2 6HN</p>
-          </div>
+          <address className="not-italic space-y-1 text-gray-600">
+            <p className="font-semibold">{CONTACT.address.name}</p>
+            <p>{CONTACT.address.street}</p>
+            <p>{CONTACT.address.area}</p>
+            <p>{CONTACT.address.city}</p>
+            <p>{CONTACT.address.county}</p>
+            <p>{CONTACT.address.postcode}</p>
+          </address>
           <div className="mt-4 pt-4 border-t border-gray-200 space-y-1 text-sm text-gray-500">
-            <p>VAT: GB 196 9926 85</p>
-            <p>Company No: 1040660</p>
+            <p>VAT: {CONTACT.vatNo}</p>
+            <p>Company No: {CONTACT.companyNo}</p>
           </div>
         </div>
       </div>
 
       {/* Phone */}
       <div className="relative group">
-        <div className="absolute -top-3 -left-3 text-7xl font-bold text-brand-600/5 leading-none pointer-events-none">
+        <div className="absolute -top-3 -left-3 text-7xl font-bold text-brand-600/5 leading-none pointer-events-none" aria-hidden="true">
           02
         </div>
         <div className="relative bg-white border-2 border-gray-200 rounded-2xl p-8 hover:border-brand-600 transition-colors">
@@ -46,18 +47,18 @@ export function ContactInfo() {
           </div>
           <h3 className="font-display text-xl font-bold mb-4">Phone</h3>
           <a
-            href="tel:+441582791190"
+            href={`tel:${CONTACT.phone}`}
             onClick={trackPhoneClick}
             className="text-lg text-brand-600 hover:text-brand-700 font-semibold transition-colors"
           >
-            +44 (0)1582 791190
+            {CONTACT.phoneDisplay}
           </a>
         </div>
       </div>
 
       {/* Email */}
       <div className="relative group">
-        <div className="absolute -top-3 -left-3 text-7xl font-bold text-brand-600/5 leading-none pointer-events-none">
+        <div className="absolute -top-3 -left-3 text-7xl font-bold text-brand-600/5 leading-none pointer-events-none" aria-hidden="true">
           03
         </div>
         <div className="relative bg-white border-2 border-gray-200 rounded-2xl p-8 hover:border-brand-600 transition-colors">
@@ -68,11 +69,11 @@ export function ContactInfo() {
           </div>
           <h3 className="font-display text-xl font-bold mb-4">Email</h3>
           <a
-            href="mailto:office@mascoprint.co.uk"
+            href={`mailto:${CONTACT.email}`}
             onClick={trackEmailClick}
             className="text-lg text-brand-600 hover:text-brand-700 font-semibold transition-colors break-all"
           >
-            office@mascoprint.co.uk
+            {CONTACT.email}
           </a>
         </div>
       </div>

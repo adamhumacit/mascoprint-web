@@ -1,4 +1,5 @@
 import { Resend } from 'resend'
+import { CONTACT } from '@/config/contact'
 
 let resend: Resend
 
@@ -101,7 +102,7 @@ function buildContactEmailHtml(data: ContactFormData): string {
 export async function sendContactEmail(
   data: ContactFormData
 ): Promise<{ success: boolean; error?: string }> {
-  const to = process.env.CONTACT_EMAIL_TO || 'office@mascoprint.co.uk'
+  const to = process.env.CONTACT_EMAIL_TO || CONTACT.email
 
   try {
     const { error } = await getResendClient().emails.send({

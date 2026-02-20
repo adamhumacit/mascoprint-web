@@ -72,7 +72,7 @@ export default function MedicalPage() {
           <div className="max-w-4xl mx-auto space-y-16">
             {/* Section 1: Client Challenge */}
             <div className="relative">
-              <div className="absolute -left-4 -top-4 text-8xl font-bold text-brand-600/5 leading-none">01</div>
+              <div className="absolute -left-4 -top-4 text-8xl font-bold text-brand-600/5 leading-none" aria-hidden="true">01</div>
               <div className="relative">
                 <div className="flex items-center gap-3 mb-6">
                   <div className="h-1 w-12 bg-brand-600 rounded-full" />
@@ -88,7 +88,7 @@ export default function MedicalPage() {
 
             {/* Section 2: Solution Developed */}
             <div className="relative">
-              <div className="absolute -left-4 -top-4 text-8xl font-bold text-brand-600/5 leading-none">02</div>
+              <div className="absolute -left-4 -top-4 text-8xl font-bold text-brand-600/5 leading-none" aria-hidden="true">02</div>
               <div className="relative">
                 <div className="flex items-center gap-3 mb-6">
                   <div className="h-1 w-12 bg-brand-600 rounded-full" />
@@ -115,7 +115,7 @@ export default function MedicalPage() {
 
             {/* Section 3: Equipment Used */}
             <div className="relative">
-              <div className="absolute -left-4 -top-4 text-8xl font-bold text-brand-600/5 leading-none">03</div>
+              <div className="absolute -left-4 -top-4 text-8xl font-bold text-brand-600/5 leading-none" aria-hidden="true">03</div>
               <div className="relative">
                 <div className="flex items-center gap-3 mb-6">
                   <div className="h-1 w-12 bg-brand-600 rounded-full" />
@@ -140,7 +140,7 @@ export default function MedicalPage() {
 
             {/* Section 4: Results */}
             <div className="relative">
-              <div className="absolute -left-4 -top-4 text-8xl font-bold text-brand-600/5 leading-none">04</div>
+              <div className="absolute -left-4 -top-4 text-8xl font-bold text-brand-600/5 leading-none" aria-hidden="true">04</div>
               <div className="relative">
                 <div className="flex items-center gap-3 mb-6">
                   <div className="h-1 w-12 bg-brand-600 rounded-full" />

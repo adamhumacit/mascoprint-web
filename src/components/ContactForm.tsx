@@ -101,37 +101,38 @@ export function ContactForm() {
           <div className="h-1 w-16 bg-brand-600 rounded-full" />
         </div>
 
-        {/* Success Message */}
-        {submitStatus === 'success' && (
-          <div className="mb-6 p-4 bg-green-600/20 border-2 border-green-500/50 rounded-lg backdrop-blur-sm">
-            <div className="flex items-start gap-3">
-              <svg className="w-6 h-6 text-green-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-              </svg>
-              <div>
-                <p className="text-white font-semibold">Message sent successfully!</p>
-                <p className="text-white/80 text-sm mt-1">We'll get back to you as soon as possible.</p>
+        {/* Status Messages */}
+        <div aria-live="polite" role="status">
+          {submitStatus === 'success' && (
+            <div className="mb-6 p-4 bg-green-600/20 border-2 border-green-500/50 rounded-lg backdrop-blur-sm">
+              <div className="flex items-start gap-3">
+                <svg className="w-6 h-6 text-green-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+                <div>
+                  <p className="text-white font-semibold">Message sent successfully!</p>
+                  <p className="text-white/80 text-sm mt-1">We&apos;ll get back to you as soon as possible.</p>
+                </div>
               </div>
             </div>
-          </div>
-        )}
+          )}
 
-        {/* Error Message */}
-        {submitStatus === 'error' && (
-          <div className="mb-6 p-4 bg-red-600/20 border-2 border-red-500/50 rounded-lg backdrop-blur-sm">
-            <div className="flex items-start gap-3">
-              <svg className="w-6 h-6 text-red-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
-              </svg>
-              <div>
-                <p className="text-white font-semibold">Failed to send message</p>
-                <p className="text-white/80 text-sm mt-1">
-                  {errorMessage || 'Please try again or contact us directly via email.'}
-                </p>
+          {submitStatus === 'error' && (
+            <div className="mb-6 p-4 bg-red-600/20 border-2 border-red-500/50 rounded-lg backdrop-blur-sm">
+              <div className="flex items-start gap-3">
+                <svg className="w-6 h-6 text-red-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                </svg>
+                <div>
+                  <p className="text-white font-semibold">Failed to send message</p>
+                  <p className="text-white/80 text-sm mt-1">
+                    {errorMessage || 'Please try again or contact us directly via email.'}
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           {/* Honeypot field — hidden from users, catches bots */}

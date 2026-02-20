@@ -227,7 +227,7 @@ export default function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
             {services.map((service) => (
               <div key={service.title} className="group relative">
-                <div className="absolute -top-4 -left-4 text-8xl font-bold text-brand-600/10 leading-none">
+                <div className="absolute -top-4 -left-4 text-8xl font-bold text-brand-600/10 leading-none" aria-hidden="true">
                   {service.number}
                 </div>
                 <div className="relative bg-white border-2 border-gray-200 rounded-2xl p-8 hover:border-brand-600 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">

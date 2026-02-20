@@ -102,7 +102,7 @@ export default function CaseStudiesPage() {
               <Link key={industry.slug} href={`/case-studies/${industry.slug}`}>
                 <div className="group relative">
                   {/* Large number background */}
-                  <div className="absolute -top-6 -right-4 text-9xl font-bold text-brand-600/5 leading-none pointer-events-none">
+                  <div className="absolute -top-6 -right-4 text-9xl font-bold text-brand-600/5 leading-none pointer-events-none" aria-hidden="true">
                     {industry.number}
                   </div>
 
