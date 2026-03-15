@@ -9,7 +9,7 @@ export function Footer() {
   return (
     <footer className="bg-gray-50 border-t border-gray-200">
       <Container>
-        <div className="py-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="py-12 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
           {/* Company Info */}
           <div>
             <h3 className="font-display font-bold text-lg mb-4">Mascoprint</h3>
@@ -49,7 +49,7 @@ export function Footer() {
           {/* Quick Links */}
           <nav aria-label="Quick Links">
             <h3 className="font-display font-bold text-lg mb-4">Quick Links</h3>
-            <ul className="space-y-2 text-sm">
+            <ul className="space-y-2 text-sm inline-block md:block">
               <li>
                 <Link href="/products" className="text-gray-600 hover:text-primary-600">
                   Products
@@ -81,13 +81,13 @@ export function Footer() {
           {/* Social */}
           <div>
             <h3 className="font-display font-bold text-lg mb-4">Follow Us</h3>
-            <div className="flex space-x-4">
+            <div className="flex justify-center md:justify-start space-x-2">
               <a
                 href="https://twitter.com/mascoprint"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackExternalLink('https://twitter.com/mascoprint', 'Twitter')}
-                className="text-gray-400 hover:text-primary-600"
+                className="p-2 text-gray-400 hover:text-primary-600"
               >
                 <span className="sr-only">Twitter</span>
                 <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
@@ -99,7 +99,7 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackExternalLink('https://youtube.com/@mascoprint', 'YouTube')}
-                className="text-gray-400 hover:text-primary-600"
+                className="p-2 text-gray-400 hover:text-primary-600"
               >
                 <span className="sr-only">YouTube</span>
                 <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
@@ -111,7 +111,7 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackExternalLink('https://uk.linkedin.com/company/mascoprint-developments-limited', 'LinkedIn')}
-                className="text-gray-400 hover:text-primary-600"
+                className="p-2 text-gray-400 hover:text-primary-600"
               >
                 <span className="sr-only">LinkedIn</span>
                 <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">

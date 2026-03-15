@@ -83,7 +83,7 @@ function ProductGallery({ images, productTitle }: { images: string[], productTit
   return (
     <div className="space-y-4">
       {/* Main Image */}
-      <div className="relative h-[500px] bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl overflow-hidden border-2 border-gray-200 group">
+      <div className="relative h-[300px] sm:h-[400px] md:h-[500px] bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl overflow-hidden border-2 border-gray-200 group">
         {imageLoading && (
           <div className="absolute inset-0 flex items-center justify-center p-8">
             <Skeleton className="w-full h-full rounded-lg" animation="wave" />
@@ -94,7 +94,7 @@ function ProductGallery({ images, productTitle }: { images: string[], productTit
           alt={`${productTitle} - image ${selectedImage + 1}`}
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 600px"
-          className={`object-contain p-8 group-hover:scale-105 transition-all duration-500 ${
+          className={`object-contain p-8 group-hover:scale-105 transition-[transform,opacity] duration-500 ${
             imageLoading ? 'opacity-0' : 'opacity-100'
           }`}
           onLoad={() => setImageLoading(false)}
@@ -112,7 +112,7 @@ function ProductGallery({ images, productTitle }: { images: string[], productTit
                 setSelectedImage(index)
                 setImageLoading(true)
               }}
-              className={`relative h-24 bg-gray-50 rounded-lg border-2 transition-all overflow-hidden ${
+              className={`relative h-24 bg-gray-50 rounded-lg border-2 transition-[border-color,transform,box-shadow] overflow-hidden ${
                 selectedImage === index
                   ? 'border-brand-600 ring-2 ring-brand-200 scale-105'
                   : 'border-gray-200 hover:border-gray-300'
@@ -179,7 +179,7 @@ function ProductSection({ product, index }: { product: typeof products[0], index
               <div className="mt-6">
                 <button
                   onClick={() => setShowVideo(true)}
-                  className="w-full py-4 px-6 bg-gradient-to-r from-brand-600 to-brand-700 hover:from-brand-700 hover:to-brand-800 text-white rounded-xl font-semibold transition-all flex items-center justify-center gap-3 shadow-lg shadow-brand-600/25"
+                  className="w-full py-4 px-6 bg-gradient-to-r from-brand-600 to-brand-700 hover:from-brand-700 hover:to-brand-800 text-white rounded-xl font-semibold transition-colors flex items-center justify-center gap-3 shadow-lg shadow-brand-600/25 active:scale-[0.98]"
                 >
                   <svg
                     className="w-6 h-6"
@@ -345,7 +345,7 @@ export default function ProductsPage() {
       {/* Bottom CTA */}
       <Section spacing="lg">
         <Container>
-          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 px-12 py-20 text-center">
+          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 px-6 sm:px-12 py-16 sm:py-20 text-center">
             <div
               className="absolute inset-0 opacity-[0.02]"
               style={{

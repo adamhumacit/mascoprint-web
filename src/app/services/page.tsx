@@ -79,7 +79,7 @@ export default function ServicesPage() {
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <div className="relative aspect-[3/4] lg:aspect-[4/5] overflow-hidden rounded-2xl group">
               <Image
-                src="/images/screen-manufacturing.jpg"
+                src="/images/screen-manufacturing.webp"
                 alt="Screen Manufacturing Process"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
@@ -154,7 +154,7 @@ export default function ServicesPage() {
             </div>
             <div className="relative aspect-[4/3] lg:aspect-[5/4] overflow-hidden rounded-2xl group lg:order-2">
               <Image
-                src="/images/cliche-steel-plates.jpg"
+                src="/images/cliche-steel-plates.webp"
                 alt="Cliché Steel Plates Etching"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
@@ -171,7 +171,7 @@ export default function ServicesPage() {
         <Container>
           <div className="grid lg:grid-cols-2 gap-8">
             {/* Artwork Origination */}
-            <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-slate-900 to-slate-800 p-12 text-white group hover:shadow-2xl transition-shadow duration-500">
+            <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-slate-900 to-slate-800 p-12 text-white group hover:shadow-2xl transition-shadow duration-500 active:scale-[0.99]">
               <div className="absolute top-0 right-0 w-64 h-64 bg-brand-600/10 rounded-full blur-3xl -translate-y-32 translate-x-32 group-hover:bg-brand-600/20 transition-colors duration-500" />
               <div className="relative z-10">
                 <div className="mb-8">
@@ -198,7 +198,7 @@ export default function ServicesPage() {
             </div>
 
             {/* Consultancy Services */}
-            <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-brand-600 to-brand-700 p-12 text-white group hover:shadow-2xl transition-shadow duration-500">
+            <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-brand-600 to-brand-700 p-12 text-white group hover:shadow-2xl transition-shadow duration-500 active:scale-[0.99]">
               <div className="absolute bottom-0 left-0 w-64 h-64 bg-black/10 rounded-full blur-3xl translate-y-32 -translate-x-32 group-hover:bg-black/20 transition-colors duration-500" />
               <div className="relative z-10">
                 <div className="mb-8">
@@ -230,7 +230,7 @@ export default function ServicesPage() {
       {/* CTA Section */}
       <Section spacing="lg">
         <Container>
-          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 px-12 py-20 text-center">
+          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 px-6 sm:px-12 py-16 sm:py-20 text-center">
             <div
               className="absolute inset-0 opacity-[0.02]"
               style={{

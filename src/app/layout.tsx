@@ -23,6 +23,7 @@ export const viewport = {
   width: 'device-width',
   initialScale: 1,
   maximumScale: 5,
+  themeColor: '#0ea5e9',
 }
 
 export const metadata: Metadata = {
@@ -41,6 +42,22 @@ export const metadata: Metadata = {
     'automotive printing',
   ],
   authors: [{ name: 'Mascoprint' }],
+  icons: {
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon-192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/favicon-512.png', sizes: '512x512', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/apple-touch-icon.png', sizes: '180x180' },
+    ],
+  },
+  manifest: '/manifest.json',
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'default',
+    title: 'Mascoprint',
+  },
   openGraph: {
     type: 'website',
     locale: 'en_GB',

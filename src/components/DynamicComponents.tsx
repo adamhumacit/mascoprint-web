@@ -7,7 +7,7 @@ export const DynamicContactForm = dynamic(
   () => import('./ContactForm').then(mod => ({ default: mod.ContactForm })),
   {
     loading: () => (
-      <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-3xl p-10 md:p-12 h-[600px] flex items-center justify-center">
+      <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-3xl p-10 md:p-12 h-[400px] md:h-[600px] flex items-center justify-center">
         <div className="animate-pulse text-white">Loading form...</div>
       </div>
     ),

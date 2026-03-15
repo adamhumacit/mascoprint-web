@@ -167,7 +167,7 @@ export default function MedicalPage() {
       {/* CTA Section */}
       <Section spacing="lg">
         <Container>
-          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 px-12 py-20 text-center">
+          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 px-6 sm:px-12 py-16 sm:py-20 text-center">
             <div
               className="absolute inset-0 opacity-[0.02]"
               style={{

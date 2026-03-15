@@ -216,7 +216,7 @@ export function Header() {
           {/* Mobile menu button */}
           <button
             type="button"
-            className="lg:hidden p-2"
+            className="lg:hidden p-3 -mr-1"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-expanded={mobileMenuOpen}
           >
@@ -282,7 +282,7 @@ export function Header() {
                             key={subitem.name}
                             href={subitem.href}
                             prefetch={true}
-                            className="block px-4 py-2 text-sm text-gray-600 hover:text-brand-600 hover:bg-brand-50 rounded-lg transition-colors"
+                            className="block px-4 py-3 text-sm text-gray-600 hover:text-brand-600 hover:bg-brand-50 rounded-lg transition-colors"
                             onClick={() => {
                               setMobileMenuOpen(false)
                               setOpenMobileSubmenu(null)

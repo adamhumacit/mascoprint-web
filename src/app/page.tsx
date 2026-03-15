@@ -82,8 +82,8 @@ export default function HomePage() {
             }}
           />
           {/* Gradient Blobs */}
-          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-600/10 rounded-full blur-3xl translate-x-1/3 -translate-y-1/3" />
-          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-brand-400/10 rounded-full blur-3xl -translate-x-1/4 translate-y-1/4" />
+          <div className="absolute top-0 right-0 w-72 sm:w-96 lg:w-[600px] h-72 sm:h-96 lg:h-[600px] bg-brand-600/10 rounded-full blur-3xl translate-x-1/3 -translate-y-1/3" />
+          <div className="absolute bottom-0 left-0 w-48 sm:w-72 lg:w-[400px] h-48 sm:h-72 lg:h-[400px] bg-brand-400/10 rounded-full blur-3xl -translate-x-1/4 translate-y-1/4" />
 
           {/* Decorative Geometric Shapes */}
           <div className="absolute top-20 right-1/4 w-32 h-32 border-2 border-brand-600/20 rounded-lg rotate-12 hidden lg:block" />
@@ -110,7 +110,7 @@ export default function HomePage() {
               <p className="text-xl md:text-2xl text-gray-600 mb-12 leading-relaxed">
                 A family-owned business specialising in screen and pad printing solutions for industrial applications.
               </p>
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-col sm:flex-row flex-wrap gap-4 items-center sm:items-start">
                 <Button href="/contact" size="lg" className="bg-brand-600 hover:bg-brand-700 text-white border-0 px-8 py-6 text-lg font-semibold shadow-xl shadow-brand-600/25">
                   Get in Touch
                 </Button>
@@ -127,13 +127,13 @@ export default function HomePage() {
               <div className="absolute top-2 right-44 w-24 h-20 bg-brand-600/5 rounded-xl border border-brand-600/10 -rotate-3" />
 
               {/* Stat Card 1 - 50+ Years: top-left */}
-              <div className="absolute top-0 left-4 w-48 bg-white/80 backdrop-blur-sm border-2 border-brand-600/20 rounded-2xl p-7 hover:shadow-xl transition-all duration-300 group -rotate-1 hover:rotate-0 hover:-translate-y-1">
+              <div className="absolute top-0 left-4 w-48 bg-white/80 backdrop-blur-sm border-2 border-brand-600/20 rounded-2xl p-7 hover:shadow-xl transition-[shadow,transform] duration-300 group -rotate-1 hover:rotate-0 hover:-translate-y-1">
                 <div className="text-5xl font-bold text-brand-600 mb-2 group-hover:scale-110 transition-transform">50+</div>
                 <div className="text-sm font-semibold text-gray-700">Years Experience</div>
               </div>
 
               {/* Stat Card 2 - Bespoke: top-right, overlapping */}
-              <div className="absolute top-10 left-[220px] w-42 bg-white/80 backdrop-blur-sm border-2 border-gray-200 rounded-2xl p-6 hover:shadow-xl transition-all duration-300 group rotate-2 hover:rotate-0 hover:-translate-y-1">
+              <div className="absolute top-10 left-[220px] w-42 bg-white/80 backdrop-blur-sm border-2 border-gray-200 rounded-2xl p-6 hover:shadow-xl transition-[shadow,transform] duration-300 group rotate-2 hover:rotate-0 hover:-translate-y-1">
                 <div className="flex items-center gap-2 mb-3">
                   <svg className="w-10 h-10 text-gray-900 group-hover:rotate-12 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" />
@@ -143,13 +143,13 @@ export default function HomePage() {
               </div>
 
               {/* Stat Card 3 - UK: bottom-left, blue */}
-              <div className="absolute bottom-0 left-0 w-48 bg-gradient-to-br from-brand-600 to-brand-700 border-2 border-brand-700 rounded-2xl p-7 hover:shadow-2xl transition-all duration-300 text-white group rotate-1 hover:rotate-0 hover:-translate-y-1">
+              <div className="absolute bottom-0 left-0 w-48 bg-gradient-to-br from-brand-600 to-brand-700 border-2 border-brand-700 rounded-2xl p-7 hover:shadow-2xl transition-[shadow,transform] duration-300 text-white group rotate-1 hover:rotate-0 hover:-translate-y-1">
                 <div className="text-5xl font-bold mb-2 group-hover:scale-110 transition-transform">UK</div>
                 <div className="text-sm font-semibold text-white/90">Based & Proud</div>
               </div>
 
               {/* Stat Card 4 - Quality: bottom-right, close to UK card */}
-              <div className="absolute bottom-6 left-[210px] w-42 bg-white/80 backdrop-blur-sm border-2 border-gray-200 rounded-2xl p-6 hover:shadow-xl transition-all duration-300 group -rotate-2 hover:rotate-0 hover:-translate-y-1">
+              <div className="absolute bottom-6 left-[210px] w-42 bg-white/80 backdrop-blur-sm border-2 border-gray-200 rounded-2xl p-6 hover:shadow-xl transition-[shadow,transform] duration-300 group -rotate-2 hover:rotate-0 hover:-translate-y-1">
                 <div className="flex items-center gap-2 mb-3">
                   <svg className="w-8 h-8 text-brand-600 group-hover:rotate-12 transition-transform" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
@@ -230,7 +230,7 @@ export default function HomePage() {
                 <div className="absolute -top-4 -left-4 text-8xl font-bold text-brand-600/10 leading-none" aria-hidden="true">
                   {service.number}
                 </div>
-                <div className="relative bg-white border-2 border-gray-200 rounded-2xl p-8 hover:border-brand-600 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                <div className="relative bg-white border-2 border-gray-200 rounded-2xl p-8 hover:border-brand-600 transition-[border-color,shadow,transform] duration-300 hover:shadow-xl hover:-translate-y-1 active:scale-[0.98]">
                   <h3 className="font-display text-2xl font-bold mb-4">{service.title}</h3>
                   <p className="text-gray-600 leading-relaxed">{service.description}</p>
                 </div>
@@ -264,7 +264,7 @@ export default function HomePage() {
                 key={sector}
                 className="relative group"
               >
-                <div className="bg-gradient-to-br from-white to-gray-50 border-2 border-gray-200 rounded-xl p-6 text-center hover:border-brand-600 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                <div className="bg-gradient-to-br from-white to-gray-50 border-2 border-gray-200 rounded-xl p-6 text-center hover:border-brand-600 transition-[border-color,shadow,transform] duration-300 hover:shadow-lg hover:-translate-y-1 active:scale-[0.98]">
                   <p className="font-display font-bold text-lg">{sector}</p>
                 </div>
               </div>
@@ -357,7 +357,7 @@ export default function HomePage() {
       {/* CTA Section */}
       <Section spacing="lg">
         <Container>
-          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 px-12 py-20 text-center">
+          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 px-6 sm:px-12 py-16 sm:py-20 text-center">
             <div
               className="absolute inset-0 opacity-[0.02]"
               style={{

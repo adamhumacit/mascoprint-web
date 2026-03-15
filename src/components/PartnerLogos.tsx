@@ -25,7 +25,7 @@ export function PartnerLogos() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label={`Visit ${partner.name}`}
-          className="bg-white border-2 border-gray-200 rounded-2xl overflow-hidden hover:border-brand-600 transition-colors group"
+          className="bg-white border-2 border-gray-200 rounded-2xl overflow-hidden hover:border-brand-600 transition-colors active:scale-[0.98] group"
         >
           <div className="relative h-48 bg-gray-50 flex items-center justify-center p-6">
             {loadingStates[index] && (
@@ -39,7 +39,7 @@ export function PartnerLogos() {
                 alt={partner.name}
                 fill
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 300px"
-                className={`object-contain group-hover:scale-105 transition-all duration-300 ${
+                className={`object-contain group-hover:scale-105 transition-[transform,opacity] duration-300 ${
                   loadingStates[index] ? 'opacity-0' : 'opacity-100'
                 }`}
                 onLoad={() => handleImageLoad(index)}
