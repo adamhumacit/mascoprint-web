@@ -1,15 +1,5 @@
 import { Resend } from 'resend'
 import { CONTACT } from '@/config/contact'
-import { getCloudflareContext } from '@opennextjs/cloudflare'
-
-async function getEnvVar(name: string): Promise<string | undefined> {
-  try {
-    const { env } = await getCloudflareContext({ async: true })
-    return (env as Record<string, string>)[name] ?? process.env[name]
-  } catch {
-    return process.env[name]
-  }
-}
 
 interface ContactFormData {
   name: string
@@ -103,9 +93,8 @@ function buildContactEmailHtml(data: ContactFormData): string {
 export async function sendContactEmail(
   data: ContactFormData
 ): Promise<{ success: boolean; error?: string }> {
-  const to = (await getEnvVar('CONTACT_EMAIL_TO')) || CONTACT.email
-  const apiKey = await getEnvVar('RESEND_API_KEY')
-  const resend = new Resend(apiKey)
+  const to = process.env.CONTACT_EMAIL_TO || CONTACT.email
+  const resend = new Resend(process.env.RESEND_API_KEY)
 
   try {
     const { error } = await resend.emails.send({
