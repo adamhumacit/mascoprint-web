@@ -5,7 +5,9 @@ import { Button } from '@/components/ui/Button'
 import { DynamicPartnerLogos } from '@/components/DynamicComponents'
 
 export const metadata: Metadata = {
-  title: 'Home',
+  title: {
+    absolute: 'Mascoprint - Screen & Pad Printing Specialists',
+  },
   description: 'Mascoprint is a family-run industrial printing company with 50+ years of experience in screen and pad printing. Serving aerospace, automotive, defence, medical, plastics, and glassware sectors across the UK.',
   openGraph: {
     title: 'Mascoprint - Screen & Pad Printing Specialists',
