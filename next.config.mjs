@@ -2,6 +2,9 @@
 const nextConfig = {
   pageExtensions: ['ts', 'tsx', 'js', 'jsx'],
 
+  // Enforce no trailing slashes to prevent duplicate URLs
+  trailingSlash: false,
+
   // 301 redirects from old WordPress URLs to new Next.js routes
   async redirects() {
     return [
@@ -57,6 +60,72 @@ const nextConfig = {
       },
       {
         source: '/wp-login.php',
+        destination: '/',
+        permanent: true,
+      },
+      // WordPress core paths (catch remaining WP URLs)
+      {
+        source: '/wp-content/:path*',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/wp-includes/:path*',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/wp-json/:path*',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/wp-admin/:path*',
+        destination: '/',
+        permanent: true,
+      },
+      // Common WordPress taxonomy/archive paths
+      {
+        source: '/category/:path*',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/tag/:path*',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/author/:path*',
+        destination: '/',
+        permanent: true,
+      },
+      // WordPress feed URLs
+      {
+        source: '/feed',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/feed/:path*',
+        destination: '/',
+        permanent: true,
+      },
+      // WordPress pagination
+      {
+        source: '/page/:path*',
+        destination: '/',
+        permanent: true,
+      },
+      // WordPress comments feed
+      {
+        source: '/comments/feed',
+        destination: '/',
+        permanent: true,
+      },
+      // Common WordPress plugin paths
+      {
+        source: '/xmlrpc.php',
         destination: '/',
         permanent: true,
       },
